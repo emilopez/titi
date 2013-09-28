@@ -34,7 +34,7 @@ class MainFrame( gui.MainFrameBase ):
             #filename_img = self.filename.GetValue()
             self.filename_img = path
             file_pointer = rasterIO.opengdalraster(self.filename_img)
-            driver, self.XSize, self.YSize, proj_wkt, geo = rasterIO.readrastermeta(file_pointer)
+            driver, self.XSize, self.YSize, self.NBand, proj_wkt, geo = rasterIO.readrastermeta(file_pointer)
             print geo
             self.data = rasterIO.readrasterband(file_pointer, 1)
             self.data = self.data.astype(np.float32)
@@ -78,6 +78,6 @@ class MainFrame( gui.MainFrameBase ):
             self.statusbar.SetStatusText("Value at img["+str(row)+","+str(col)+"] = "+str(val)+" | Georeferended to Lat, Lon = "+str(lat)+", "+str(lon))
 
     def onCmapChange( self, event ):
-        # Redraw the image using the colormap selected
+        # Redraw the image using selected colormap
         eval("self.ax.imshow(self.data, cmap = cm."+self.cmap_cbox.GetValue()+")")
         self.m_canvas.draw()
