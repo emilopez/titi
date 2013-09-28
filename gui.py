@@ -13,15 +13,6 @@ matplotlib.use('WXAgg')
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-class PageOne(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        t = wx.StaticText(self, -1, "This is a PageOne object", (20,20))
-
-class PageTwo(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        t = wx.StaticText(self, -1, "This is a PageTwo object", (40,40))
 
 ###########################################################################
 ## Class MainFrameBase
@@ -68,18 +59,24 @@ class MainFrameBase ( wx.Frame ):
 		self.lon0_img = wx.StaticText(self.m_panel, -1, "Lon0: ", style=wx.ALIGN_CENTRE)
 		self.dlat_img = wx.StaticText(self.m_panel, -1, "Dlat: ", style=wx.ALIGN_CENTRE)
 		self.dlon_img = wx.StaticText(self.m_panel, -1, "Dlon: ", style=wx.ALIGN_CENTRE)
+		self.cmap_txt = wx.StaticText(self.m_panel, -1, "Colormap: ", style=wx.ALIGN_CENTRE)
+		self.band_txt = wx.StaticText(self.m_panel, -1, "Band: ", style=wx.ALIGN_CENTRE)
 		self.lat_txt = wx.TextCtrl(self.m_panel, size=(150, -1))
 		self.lon_txt = wx.TextCtrl(self.m_panel, size=(150, -1))
 		self.btnExtract = wx.Button(self.m_panel, label="Extract")
 		self.extractedValue_txt = wx.StaticText(self.m_panel, -1, "Value: ", style=wx.ALIGN_CENTRE)
 		self.cmap_cbox = wx.ComboBox(self.m_panel, 1, value='gist_earth', pos=(50, 170), size=(150, -1), choices=cmaps, style=wx.CB_READONLY)
+		self.band_cbox = wx.ComboBox(self.m_panel, 1, value='1', pos=(50, 170), size=(150, -1), choices=['1'], style=wx.CB_READONLY)
 		self.statusbar = self.CreateStatusBar()
 
 		#bSizer4.Add( self.btDraw, 0, wx.ALL, 5 )
 		#bSizer4.Add( self.btShow, 0, wx.ALL, 5 )
 				
 		bSizer4.Add( self.btnFile, 0, wx.ALL, 5 )
+		bSizer4.Add( self.cmap_txt, 0, wx.ALL, 5 )
 		bSizer4.Add( self.cmap_cbox, 0, wx.ALL, 5 )
+		bSizer4.Add( self.band_txt, 0, wx.ALL, 5 )
+		bSizer4.Add( self.band_cbox, 0, wx.ALL, 5 )
 		bSizer4.Add( self.diver_img, 0, wx.ALL, 5 )
 		bSizer4.Add( self.size_img, 0, wx.ALL, 5 )
 		bSizer4.Add( self.lat0_img, 0, wx.ALL, 5 )
@@ -112,6 +109,7 @@ class MainFrameBase ( wx.Frame ):
                 self.m_canvas.mpl_connect('button_press_event', self.onFigPick)
                 #self.m_canvas.mpl_connect('figure_enter_event', self.onFigPick)
                 self.cmap_cbox.Bind(wx.EVT_TEXT, self.onCmapChange)
+                self.band_cbox.Bind(wx.EVT_TEXT, self.onBandChange)
 	def __del__( self ):
 		pass
 	
@@ -130,5 +128,7 @@ class MainFrameBase ( wx.Frame ):
         def onFigPick( self, event ):
             event.Skip()
         def onCmapChange( self, event ):
+            event.Skip()
+        def onBandChange( self, event ):
             event.Skip()
 
