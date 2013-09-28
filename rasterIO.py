@@ -3,7 +3,7 @@
 rasterIO
 ========
 
-This library contains wrapper functions for GDAL Python I/O bindings, converting data to Numerical Python 
+This library contains wrapper functions for GDAL Python I/O bindings, converting data to Numerical Python
 multi-dimensional array's in memory for processing. Subsequent, generated array's can be written to disk
 in the standard Geospatial GeoTiff format.
 
@@ -33,7 +33,7 @@ NoDataValue
 How to use documentation
 ------------------------
 Documentation for module functions is provided as Python docstrings, accessible from an interactive Python terminal.
-Within docstrings examples from an interactive Python console are identified using '>>>'. 
+Within docstrings examples from an interactive Python console are identified using '>>>'.
 Further information is given to developers within the source code using '#' comment strings.
 To view this text and a list of available functions call the Python in-built help command, specifying module name.
 
@@ -52,12 +52,12 @@ For help on a specific function call the Python in-built help command, specifyin
 	wkt2epsg(wkt)
     		Accepts well known text of Projection/Coordinate Reference System and generates
     		EPSG code
-	(END) 
+	(END)
 
 How to access functions
 -----------------------
 To access functions, import the module to Python and call the desired function, assigning the output to a named variable.
-Note that the primary input datatype (default) for all functions is either a Numpy array or a Numpy masked array. 
+Note that the primary input datatype (default) for all functions is either a Numpy array or a Numpy masked array.
 Within this module the term "raster" is used to signify a Numpy/Numpy masked array of raster values.
 Use the rasterIO module to convert Numpy arrays to/from Geospatial raster data formats.
 
@@ -71,7 +71,7 @@ Dependencies
 ------------
 Python 2.5 or greater
 Numerical python (Numpy) 1.2.1 or greater (1.4.1 recommended).
-	- Note that due to bugs in Numpy.ma module, Numpy 1.4.1 or greater is required to support masked arrays of integer values. 
+	- Note that due to bugs in Numpy.ma module, Numpy 1.4.1 or greater is required to support masked arrays of integer values.
 		* See comments in reasrasterband() for more information.
 
 License & Authors
@@ -119,7 +119,7 @@ __version__ = "1.1.1"
 # 18/01/2011 - TH - Added dictionary data type look ups to read and writes.
 # 19/01/2011 - TH - Added optional user specified input and ouput NoDataValues.
 # 19/01/2011 - TH - Added 7-data types to dictionaries and changed names of dictionaries.
-# 19/01/2011 - TH - Added test for Numpy 1.3.0 or greater to support Masked Array fill_values. 
+# 19/01/2011 - TH - Added test for Numpy 1.3.0 or greater to support Masked Array fill_values.
 # 19/01/2011 - TH - Changed test to Numpy 1.4.1 - min version required for integer masking.
 # 19/01/2011 - TH - Cleaned up writerasterbands() comments.
 # 27/01/2011 - TH - Marked this version ni experimental on 478 as 1.1.0
@@ -133,7 +133,7 @@ __version__ = "1.1.1"
 # 03/02/2011 - TH - Cleaned up legacy code in newrasterband.
 # 03/02/2011 - TH - Marked this version as 1.1.1 in experimental.
 # 03/20/2011 - TH - Added optional NoDataVal argumen to writerasterband() function.
-# 03/02/2011 - TH - Fixed bug in epsg2wkt exception handling tests. 
+# 03/02/2011 - TH - Fixed bug in epsg2wkt exception handling tests.
 # 03/02/2011 - TH - Tested using AVHRR_Himalaya.py. Will now merge to master.
 # 03/02/2011 - TH - Merged experimental to master with no conflicts. Will now rename to rasterIO.py (droppping '.v1').
 # 03/02/2011 - TH - Added check for uint8 type when writing out NoDataValue (9999 = 15 @ uint8!). Updated docs.
@@ -187,7 +187,7 @@ def opengdalraster(fname):
 	dataset = gdal.Open( fname, GA_ReadOnly)
 	if dataset != None:
 		return dataset
-	else: 
+	else:
 		raise IOError
 		
 # function to read raster image metadata
@@ -208,8 +208,12 @@ def readrastermeta(dataset):
 		# geotransform[5] = n-s picel resolution
 	XSize = dataset.RasterXSize
 	YSize = dataset.RasterYSize
-	
-	return driver_short, XSize, YSize, proj_wkt, geotransform
+	# added by emiliano.lopez@gmail.com:
+	NBand = dataset.RasterCount
+	# original:
+	# return driver_short, XSize, YSize, proj_wkt, geotransform
+	# modyfied by emiliano.lopez@gmail.com:
+	return driver_short, XSize, YSize, NBand, proj_wkt, geotransform
 
 # function to read a band from a dat# apply NoDataValue masking.aset
 def readrasterband(dataset, aband, NoDataVal=None, masked=True):
@@ -348,4 +352,4 @@ def wkt2epsg(wkt):
 			else:
 			 	return int(srs.GetAuthorityCode("GEOGCS"))
 	else:
-		raise TypeError	 
+		raise TypeError
