@@ -1,4 +1,4 @@
-titi is a saTelitall Image viewer
+titi is a satelitall image viewer
 ====
 
 
