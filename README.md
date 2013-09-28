@@ -1,7 +1,7 @@
-titi
+titi is a saTelitall Image viewer
 ====
 
-titi Is a saTelitall/radar Image viewer
+
 
 ### Features
 
