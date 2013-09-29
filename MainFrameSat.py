@@ -27,16 +27,24 @@ class MainFrame( gui.MainFrameBase ):
             )
             #wx.MULTIPLE |
         if dlg.ShowModal() == wx.ID_OK:
+            # only one file
             path = dlg.GetPaths()[0]
             #self.filename.SetValue(path)
             self.statusbar.SetStatusText(path)
             self.ax = self.m_figure.add_subplot(111)
             #filename_img = self.filename.GetValue()
             self.filename_img = path
-            file_pointer = rasterIO.opengdalraster(self.filename_img)
-            driver, self.XSize, self.YSize, self.NBand, proj_wkt, geo = rasterIO.readrastermeta(file_pointer)
+            self.file_pointer = rasterIO.opengdalraster(self.filename_img)
+            driver, self.XSize, self.YSize, self.NBand, proj_wkt, geo = rasterIO.readrastermeta(self.file_pointer)
             print geo
-            self.data = rasterIO.readrasterband(file_pointer, 1)
+
+            # Borrar todo lo del combo de bandas
+            # TODO
+
+            # Una lista de bandas agregadas al band_cbox
+            bands = [str(b) for b in range(2,self.NBand+1)]
+            self.band_cbox.AppendItems(bands)
+            self.data = rasterIO.readrasterband(self.file_pointer, int(self.band_cbox.GetValue()))
             self.data = self.data.astype(np.float32)
             eval("self.ax.imshow(self.data, cmap = cm."+self.cmap_cbox.GetValue()+")")
             self.lon0,self.lat0,self.dlon,self.dlat = geo[0],geo[3],geo[1],geo[5]
@@ -71,7 +79,7 @@ class MainFrame( gui.MainFrameBase ):
         # The event received here is of the type
         # matplotlib.backend_bases.PickEvent
 
-        if (0<=event.xdata<=self.XSize) and (0<=event.ydata<=self.YSize):
+        if (0 <= event.xdata <= self.XSize) and (0 <= event.ydata <= self.YSize):
             col,row = int(event.xdata), int(event.ydata)
             val = self.data[row][col]
             lat,lon = m.getLatLon(row,col,self.lat0,self.lon0,self.dlat,self.dlon)
@@ -79,5 +87,13 @@ class MainFrame( gui.MainFrameBase ):
 
     def onCmapChange( self, event ):
         # Redraw the image using selected colormap
+        eval("self.ax.imshow(self.data, cmap = cm."+self.cmap_cbox.GetValue()+")")
+        self.m_canvas.draw()
+
+    def onBandChange( self, event ):
+        # Redraw the image using selected band
+
+        self.data = rasterIO.readrasterband(self.file_pointer, int(self.band_cbox.GetValue()))
+        self.data = self.data.astype(np.float32)
         eval("self.ax.imshow(self.data, cmap = cm."+self.cmap_cbox.GetValue()+")")
         self.m_canvas.draw()
