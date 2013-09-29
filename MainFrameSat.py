@@ -38,12 +38,12 @@ class MainFrame( gui.MainFrameBase ):
             driver, self.XSize, self.YSize, self.NBand, proj_wkt, geo = rasterIO.readrastermeta(self.file_pointer)
             print geo
 
-            # Borrar todo lo del combo de bandas
-            # TODO
+            # Borro todo lo del combo de bandas
             self.band_cbox.Clear()
-            # Una lista de bandas agregadas al band_cbox
+            # Lista de bandas agregadas al band_cbox
             bands = [str(b) for b in range(1,self.NBand+1)]
             self.band_cbox.AppendItems(bands)
+            # Leo la banda seleccionada
             self.data = rasterIO.readrasterband(self.file_pointer, int(self.band_cbox.GetValue()))
             self.data = self.data.astype(np.float32)
             eval("self.ax.imshow(self.data, cmap = cm."+self.cmap_cbox.GetValue()+")")
@@ -92,7 +92,6 @@ class MainFrame( gui.MainFrameBase ):
 
     def onBandChange( self, event ):
         # Redraw the image using selected band
-
         self.data = rasterIO.readrasterband(self.file_pointer, int(self.band_cbox.GetValue()))
         self.data = self.data.astype(np.float32)
         eval("self.ax.imshow(self.data, cmap = cm."+self.cmap_cbox.GetValue()+")")
