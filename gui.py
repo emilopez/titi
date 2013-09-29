@@ -20,7 +20,7 @@ from matplotlib.figure import Figure
 
 class MainFrameBase ( wx.Frame ):
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"titi", pos = wx.DefaultPosition, size = wx.Size( 800,492 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"titi", pos = wx.DefaultPosition, size = wx.Size(800,492), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		bSizer1 = wx.BoxSizer( wx.VERTICAL )
@@ -36,6 +36,7 @@ class MainFrameBase ( wx.Frame ):
 		
 		quit = wx.MenuItem(file, 105, '&Quit\tCtrl+Q', 'Quit the Application')
 		about = wx.MenuItem(help, 106, '&About titi\tCtrl+Q', 'Credits, licences, etc.')
+		
 		file.AppendItem(quit)
 		help.AppendItem(about)
 		menubar.Append(file, '&File')
