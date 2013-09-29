@@ -40,9 +40,9 @@ class MainFrame( gui.MainFrameBase ):
 
             # Borrar todo lo del combo de bandas
             # TODO
-
+            self.band_cbox.Clear()
             # Una lista de bandas agregadas al band_cbox
-            bands = [str(b) for b in range(2,self.NBand+1)]
+            bands = [str(b) for b in range(1,self.NBand+1)]
             self.band_cbox.AppendItems(bands)
             self.data = rasterIO.readrasterband(self.file_pointer, int(self.band_cbox.GetValue()))
             self.data = self.data.astype(np.float32)
