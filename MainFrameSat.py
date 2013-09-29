@@ -43,6 +43,7 @@ class MainFrame( gui.MainFrameBase ):
             # Lista de bandas agregadas al band_cbox
             bands = [str(b) for b in range(1,self.NBand+1)]
             self.band_cbox.AppendItems(bands)
+            self.band_cbox.SetValue('1')
             # Leo la banda seleccionada
             self.data = rasterIO.readrasterband(self.file_pointer, int(self.band_cbox.GetValue()))
             self.data = self.data.astype(np.float32)
