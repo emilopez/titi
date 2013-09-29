@@ -20,7 +20,7 @@ from matplotlib.figure import Figure
 
 class MainFrameBase ( wx.Frame ):
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"titi", pos = wx.DefaultPosition, size = wx.Size(800,492), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"titi", pos = wx.DefaultPosition, size = wx.Size(800,600), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		bSizer1 = wx.BoxSizer( wx.VERTICAL )
@@ -62,6 +62,8 @@ class MainFrameBase ( wx.Frame ):
 		self.dlon_img = wx.StaticText(self.m_panel, -1, "Dlon: ", style=wx.ALIGN_CENTRE)
 		self.cmap_txt = wx.StaticText(self.m_panel, -1, "Colormap: ", style=wx.ALIGN_CENTRE)
 		self.band_txt = wx.StaticText(self.m_panel, -1, "Band: ", style=wx.ALIGN_CENTRE)
+		self.lat_label = wx.StaticText(self.m_panel, -1, "Latitude: ", style=wx.ALIGN_CENTRE)
+		self.lon_label = wx.StaticText(self.m_panel, -1, "Longitude: ", style=wx.ALIGN_CENTRE)
 		self.lat_txt = wx.TextCtrl(self.m_panel, size=(150, -1))
 		self.lon_txt = wx.TextCtrl(self.m_panel, size=(150, -1))
 		self.btnExtract = wx.Button(self.m_panel, label="Extract")
@@ -84,7 +86,9 @@ class MainFrameBase ( wx.Frame ):
 		bSizer4.Add( self.lon0_img, 0, wx.ALL, 5 )
 		bSizer4.Add( self.dlat_img, 0, wx.ALL, 5 )
 		bSizer4.Add( self.dlon_img, 0, wx.ALL, 5 )
+		bSizer4.Add( self.lat_label, 0, wx.ALL, 5 )
 		bSizer4.Add( self.lat_txt, 0, wx.ALL, 5 )
+		bSizer4.Add( self.lon_label, 0, wx.ALL, 5 )
 		bSizer4.Add( self.lon_txt, 0, wx.ALL, 5 )	
 		bSizer4.Add( self.btnExtract, 0, wx.ALL, 5 )
 		bSizer4.Add( self.extractedValue_txt, 0, wx.ALL, 5 )
