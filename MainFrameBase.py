@@ -2,98 +2,189 @@
 
 import wx
 import gui
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.mlab as mlab
-import matplotlib.cm as cm
 import rasterIO
+import numpy as np
+import matplotlib.cm as cm
 import module as m
+from MasiveCalcsFrame import MasiveCalcsFrame
 
 # Implementing MainFrameBase
-class MainFrame( gui.MainFrameBase ):
+class MainFrameBase( gui.MainFrameBase ):
     def __init__( self, parent ):
         gui.MainFrameBase.__init__( self, parent )
+        self.m_canvas.SetInitialSize(wx.Size( 500,500 ))
+        self.m_canvas_preview.SetInitialSize(wx.Size( 200,200 ))
 
-    def onOpenFile(self, event):
-        wildcard = "All files (*.*)|*.*"
-        """
-        Create and show the Open FileDialog
-        """
-        dlg = wx.FileDialog(
-            self, message="Choose a file",
-            defaultFile="",
-            wildcard=wildcard,
-            style=wx.OPEN | wx.CHANGE_DIR
-            )
-            #wx.MULTIPLE |
-        if dlg.ShowModal() == wx.ID_OK:
-            # only one file
-            path = dlg.GetPaths()[0]
-            #self.filename.SetValue(path)
-            self.statusbar.SetStatusText(path)
-            self.ax = self.m_figure.add_subplot(111)
-            #filename_img = self.filename.GetValue()
-            self.filename_img = path
-            self.file_pointer = rasterIO.opengdalraster(self.filename_img)
-            driver, self.XSize, self.YSize, self.NBand, proj_wkt, geo = rasterIO.readrastermeta(self.file_pointer)
-            print geo
+    # Handlers for MainFrameBase events.
+    def onOpenFile( self, event ):
 
-            # Borro todo lo del combo de bandas
-            self.band_cbox.Clear()
-            # Lista de bandas agregadas al band_cbox
-            bands = [str(b) for b in range(1,self.NBand+1)]
-            self.band_cbox.AppendItems(bands)
-            self.band_cbox.SetValue('1')
-            # Leo la banda seleccionada
-            self.data = rasterIO.readrasterband(self.file_pointer, int(self.band_cbox.GetValue()))
-            self.data = self.data.astype(np.float32)
-            eval("self.ax.imshow(self.data, cmap = cm."+self.cmap_cbox.GetValue()+")")
-            self.lon0,self.lat0,self.dlon,self.dlat = geo[0],geo[3],geo[1],geo[5]
-            self.statusbar.SetStatusText("Proj: " + proj_wkt)
-            self.diver_img.SetLabel("Driver: " + driver)
-            self.size_img.SetLabel("Size: " + str(self.YSize)+","+str(self.XSize))
-            self.lat0_img.SetLabel("Lat0: " + str(self.lat0))
-            self.lon0_img.SetLabel("Lon0: " + str(self.lon0))
-            self.dlat_img.SetLabel("Dlat: " + str(self.dlat))
-            self.dlon_img.SetLabel("Dlon: " + str(self.dlon))
-            self.ax.set_xlabel('Col (Lon)')
-            self.ax.set_ylabel('Row (Lat)')
+        # Show in status bar and log
+        self.filename = self.m_btn_file.GetPath()
+        self.m_txt_log.AppendText("#### Opened File #### \n"+self.filename)
+        self.m_statusBar.SetStatusText(self.filename)
 
-            self.ax.grid(True)
-            self.m_canvas.draw()
-        dlg.Destroy()
+        # Load image with PyRaster
+        self.file_pointer = rasterIO.opengdalraster(self.filename)
+        driver, self.XSize, self.YSize, self.NBand, proj_wkt, geo = rasterIO.readrastermeta(self.file_pointer)
+        self.lon0,self.lat0,self.dlon,self.dlat = geo[0],geo[3],geo[1],geo[5]
 
-    def OnWidgetEnter(self, event):
-        name = event.GetEventObject().GetLabel()
-        if name == "Choose a file":
-            self.statusbar.SetStatusText("Choose a image file")
-        elif name == "Show":
-            self.statusbar.SetStatusText("Show selected image")
-        else:
-            self.statusbar.SetStatusText(event.GetEventObject().GetName())
-        event.Skip()
-    def btnExtractClick(self, event):
-        row,col = m.getRowCol(float(self.lat_txt.GetValue()),float(self.lon_txt.GetValue()),self.lat0, self.lon0, self.dlat, self.dlon)
-        self.extractedValue_txt.SetLabel("Value: "+str(self.data[row][col]))
+        # Clean band combobox, and load existing bands (Default band: 1)
+        self.m_cmb_band.Clear()
+        bands = [str(b) for b in range(1,self.NBand+1)]
+        self.m_cmb_band.AppendItems(bands)
+        self.m_cmb_band.SetValue('1')
 
-    def onFigPick( self, event ):
-        # The event received here is of the type
-        # matplotlib.backend_bases.PickEvent
-
-        if (0 <= event.xdata <= self.XSize) and (0 <= event.ydata <= self.YSize):
-            col,row = int(event.xdata), int(event.ydata)
-            val = self.data[row][col]
-            lat,lon = m.getLatLon(row,col,self.lat0,self.lon0,self.dlat,self.dlon)
-            self.statusbar.SetStatusText("Value at img["+str(row)+","+str(col)+"] = "+str(val)+" | Georeferended to Lat, Lon = "+str(lat)+", "+str(lon))
-
-    def onCmapChange( self, event ):
-        # Redraw the image using selected colormap
-        eval("self.ax.imshow(self.data, cmap = cm."+self.cmap_cbox.GetValue()+")")
-        self.m_canvas.draw()
-
-    def onBandChange( self, event ):
-        # Redraw the image using selected band
-        self.data = rasterIO.readrasterband(self.file_pointer, int(self.band_cbox.GetValue()))
+        # Get selected band
+        self.data = rasterIO.readrasterband(self.file_pointer, int(self.m_cmb_band.GetValue()))
         self.data = self.data.astype(np.float32)
-        eval("self.ax.imshow(self.data, cmap = cm."+self.cmap_cbox.GetValue()+")")
+
+        # Create figure with the colormap selected
+        self.m_figure.clear()
+        self.ax = self.m_figure.add_subplot(111)
+        eval("self.ax.imshow(self.data, cmap = cm."+self.m_cmb_colormap.GetValue()+")")
+
+        # Latitude and longitude range
+        max_lat = self.lat0 + self.YSize*self.dlat
+        max_lon = self.lon0 + self.XSize*self.dlon
+
+        # Show and Log figure metadata
+        sms = "\n+ Metadata \n    " + proj_wkt +"\n"
+        sms += "    - Size = " + str(self.YSize) + "," + str(self.XSize) + "\n"
+        sms += "    - Delta latitude = " + str(self.dlat) + "\n    - Delta longitude = " + str(self.dlon) + "\n"
+        sms += "    - Latitude limits: \n"
+        sms += "        from = "+ str(self.lat0) + "\n"
+        sms += "        to   = "+ str(max_lat) + "\n"
+        sms += "    - Longitude limits: \n"
+        sms += "        from = "+ str(self.lon0) + "\n"
+        sms += "        to   = "+ str(max_lon) + "\n"
+        self.m_txt_log.AppendText(sms)
+        self.m_txt_log.ShowPosition( self.m_txt_log.GetLastPosition())
+
+        # Set axes labels
+        self.ax.set_xlabel('Col (Lon)')
+        self.ax.set_ylabel('Row (Lat)')
+
+        # Draw figure
+        self.ax.grid(True)
         self.m_canvas.draw()
+
+    def onCmapChanged( self, event ):
+        # Redraw the image with the new selected colormap
+        eval("self.ax.imshow(self.data, cmap = cm."+self.m_cmb_colormap.GetValue()+")")
+        self.m_canvas.draw()
+	
+    def onBandChanged( self, event ):
+        # Reload the image with the band selected
+        self.data = rasterIO.readrasterband(self.file_pointer, int(self.m_cmb_band.GetValue()))
+        self.data = self.data.astype(np.float32)
+        eval("self.ax.imshow(self.data, cmap = cm."+self.m_cmb_colormap.GetValue()+")")
+        self.m_canvas.draw()
+
+    def onExtractInputTypeClick( self, event ):
+        # Set the input of extract method, row/col or lat/lon
+        choice = self.m_rBox_extract_input_type.GetStringSelection()
+        if choice == "Row/Col":
+            self.m_stxt_lat.SetLabel("Row")
+            self.m_stxt_lon.SetLabel("Column")
+        else:
+            self.m_stxt_lat.SetLabel("Latitude")
+            self.m_stxt_lon.SetLabel("Longitude")
+
+    def onExtractClicked( self, event ):
+        # Get the value from image
+        choice = self.m_rBox_extract_input_type.GetStringSelection()
+        if choice == "Row/Col":
+            row = float(self.m_txt_lat.GetValue())
+            col = float(self.m_txt_lon.GetValue())
+
+            # Only to be logged
+            lat,lon = m.getLatLon(row,col,self.lat0, self.lon0, self.dlat, self.dlon)
+        else:
+            lat = float(self.m_txt_lat.GetValue())
+            lon = float(self.m_txt_lon.GetValue())
+
+            # Image indexes
+            row,col = m.getRowCol(lat,lon,self.lat0, self.lon0, self.dlat, self.dlon)
+
+        # Format the info to be logged
+        sms = "\n+ Extract operation \n"
+        sms += "     Lat = "+ str(lat) + "\n"
+        sms += "     Lon = "+ str(lon) + "\n"
+        sms += "     Row = "+ str(row) + "\n"
+        sms += "     Col = "+ str(col) + "\n"
+        self.m_txt_log.AppendText(sms)
+
+        if ( self.YSize < row or row < 0 ) or (self.XSize < col or col < 0 ):
+            # if row or col are out of bounds
+            self.m_txt_log.AppendText("\n Error: Row or column out of bouds")
+        else:
+            self.m_txt_extracted_value.SetValue(str(self.data[row][col]))
+            self.m_txt_log.AppendText("     Extracted value = "+str(self.data[row][col]))
+
+        # Scroll to show the las log added
+        self.m_txt_log.ShowPosition( self.m_txt_log.GetLastPosition())
+		
+    def onFigureClicked( self, event ):
+        # TODO: Implement onFigureClicked
+        pass
+	
+    def onActivateApp( self, event ):
+        pass
+
+    def onEnterAxes( self, event ):
+        pass
+
+    def onLeaveAxes( self, event ):
+        pass
+
+    def onMouseMotion( self, event ):
+        # Show row,col,lat,lon,image value of pixel in status bar
+        # and a small zoom in other preview image
+        if (0 <= event.xdata <= self.XSize) and (0 <= event.ydata <= self.YSize):
+
+            # Mouse over the image
+            col,row = int(event.xdata), int(event.ydata)
+            # Warning! if row-5 or col-5 is negative => out of bounds
+            lat,lon = m.getLatLon(row,col,self.lat0, self.lon0, self.dlat, self.dlon)
+
+            # Status bar sms
+            sms = "Row,Col = ["+str(row) + "," + str(col) + "]     |     Lat,Lon =  [" + str(lat) + "," + str(lon) + "]"
+            sms += "    |    Value = " + str(self.data[row,col])
+            self.m_statusBar.SetStatusText(sms)
+
+            # Load small zoom
+            self.m_figure_preview.clear()
+            self.ax2 = self.m_figure_preview.add_subplot(111)
+            eval("self.ax2.imshow(self.data[row-5:row+5,col-5:col+5], cmap = cm." + self.m_cmb_colormap.GetValue() + ")")
+            self.m_canvas_preview.draw()
+
+    def onZoom( self, event ):
+        # Zoom on scroll mouse wheel
+        # max x and y limits
+        cur_xlim = self.ax.get_xlim()
+        cur_ylim = self.ax.get_ylim()
+
+        # x and y range
+        cur_xrange = (cur_xlim[1] - cur_xlim[0])*.5
+        cur_yrange = (cur_ylim[1] - cur_ylim[0])*.5
+
+        if event.button == 'up':
+            # zoom in
+            scale_factor = 1./2
+        elif event.button == 'down':
+            # zoom out
+            scale_factor = 2.
+
+        # Renew the limits of the image and redraw
+        self.ax.set_xlim([event.xdata - cur_xrange*scale_factor,event.xdata + cur_xrange*scale_factor])
+        self.ax.set_ylim([event.ydata - cur_yrange*scale_factor,event.ydata + cur_yrange*scale_factor])
+        self.m_canvas.draw()
+
+    def onAboutSelected( self, event ):
+        #self.About = AboutFrame(None)
+        #self.About.Show()
+        pass
+
+    def onMassiveCalcsSelected( self, event ):
+        self.MassiveCalcs = MasiveCalcsFrame(None)
+        self.MassiveCalcs.Show()
