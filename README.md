@@ -18,11 +18,11 @@ titi is a satelitall image viewer
 
 ### To do List
 * About the code/GUI design
-** GUI re-design: to use notebook/tabs			[OK]
+    * GUI re-design: to use notebook/tabs			[OK]
 
 * About functionality
-** Number of bands automatically detected		[OK]
-** Math operation between bands (NDVI, NWDI, etc..)	[..]
-** Massive extraction: extract values (from a given lat & long) from selected images... [..]
+    * Number of bands automatically detected		[OK]
+    * Math operation between bands (NDVI, NWDI, etc..)	[..]
+    * Massive extraction: extract values (from a given lat & long) from selected images... [..]
 
 
