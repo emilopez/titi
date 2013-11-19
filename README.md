@@ -11,10 +11,10 @@ titi is a satelitall image viewer
 * Use different kinds of color maps tu visualize the image.
 
 ### Dependencies
-* Matplotlib
-* WxPython
+* python-numpy
+* python-matplotlib 
 * python-gdal
-* 
+* python-wxgtk2.8
 
 ### To do List
 * GUI re-design: to use notebook/tabs			[OK]
