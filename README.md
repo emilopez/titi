@@ -13,10 +13,12 @@ titi is a satelitall image viewer
 ### Dependencies
 * Matplotlib
 * WxPython
+* python-gdal
+* 
 
 ### To do List
-* GUI re-design: to use notebook/tabs
-* Detect number of bands
-* Math operation between bands (NDVI, NWDI, etc..)
-* Massive extraction: extract values (from a given lat & long) from selected images... 
+* GUI re-design: to use notebook/tabs			[OK]
+* Number of bands automatically detected		[OK]
+* Math operation between bands (NDVI, NWDI, etc..)	[..]
+* Massive extraction: extract values (from a given lat & long) from selected images... [..]
 
