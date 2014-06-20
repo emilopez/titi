@@ -2,6 +2,7 @@
 
 import wx
 import gui
+import json
 
 # Implementing AboutFrame
 class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
@@ -43,3 +44,13 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         else:
             self.mc_stxt_lat.SetLabel("Latitude")
             self.mc_stxt_lon.SetLabel("Longitude")
+
+    def onOpenPointsFile( self, event ):
+        points_filename = self.mc_btn_file_points.GetPath()
+        with open(points_filename) as json_data:
+            dat = json.load(json_data)
+        for po in dat['points']:
+
+            self.mc_LBox_points.InsertItems([str(po['name'])+','+str(po['lat'])+','+str(po['lon'])],1)
+        #self.m_txt_log.AppendText("#### Opened File #### \n"+self.filename)
+        #self.m_statusBar.SetStatusText(self.filename)
