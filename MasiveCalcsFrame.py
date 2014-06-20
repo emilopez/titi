@@ -18,7 +18,8 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             self.mc_LBox_Files2Process.InsertItems([self.mc_gDir.GetPath()],1)
 
     def onStartExtractionClick( self, event ):
-        print self.mc_LBox_points.GetStrings()
+        for point in self.mc_LBox_points.GetStrings():
+            print point
 
     def onBtnAddPointClick( self, event ):
         # get lat/row and lon/col
@@ -28,10 +29,13 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
 
         # concatenate the type of point: lat/lon or row/col
         choice = self.mc_rBox_points_type.GetStringSelection()
+
+        '''
         if choice == "Row/Col":
             point += " (RC)"
         else:
             point += " (LL)"
+        '''
 
         # insert into the points listbox
         self.mc_LBox_points.InsertItems([point],1)
@@ -50,7 +54,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         with open(points_filename) as json_data:
             dat = json.load(json_data)
         for po in dat['points']:
-            point = '['+str(po['lat'])+','+str(po['lon'])+'] (LL)'
+            point = '['+str(po['lat'])+','+str(po['lon'])+']'
             self.mc_LBox_points.InsertItems([point],1)
         #self.m_txt_log.AppendText("#### Opened File #### \n"+self.filename)
         #self.m_statusBar.SetStatusText(self.filename)
