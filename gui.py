@@ -359,6 +359,7 @@ class MasiveCalcsFrame ( wx.Frame ):
 		self.mc_gDir.Bind( wx.EVT_TREE_ITEM_RIGHT_CLICK, self.onTreeItemRClick )
 		self.mc_rBox_points_type.Bind( wx.EVT_RADIOBOX, self.onPointsTypeClick )
 		self.mc_btn_add_point.Bind( wx.EVT_BUTTON, self.onBtnAddPointClick )
+		self.mc_btn_file_points.Bind( wx.EVT_FILEPICKER_CHANGED, self.onOpenPointsFile )
 		self.mc_btn_start_extraction.Bind( wx.EVT_BUTTON, self.onStartExtractionClick )
 	
 	def __del__( self ):
@@ -373,6 +374,9 @@ class MasiveCalcsFrame ( wx.Frame ):
 		event.Skip()
 	
 	def onBtnAddPointClick( self, event ):
+		event.Skip()
+	
+	def onOpenPointsFile( self, event ):
 		event.Skip()
 	
 	def onStartExtractionClick( self, event ):

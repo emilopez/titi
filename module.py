@@ -11,7 +11,8 @@ def getRowCol(lat,lon,lat0,lon0,dlat,dlon):
     return row,col
 
 def getLatLon(row,col,lat0,lon0,dlat,dlon):
-    "Devuelve la latitud y longitud correspondiente a una fila y columna"
+    '''Devuelve la latitud y longitud correspondiente a una fila y columna
+    '''
     lat = row*dlat + lat0
     lon = col*dlon + lon0
     return lat,lon
