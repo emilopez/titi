@@ -29,9 +29,9 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         # concatenate the type of point: lat/lon or row/col
         choice = self.mc_rBox_points_type.GetStringSelection()
         if choice == "Row/Col":
-            point += "  (R/C)"
+            point += " (RC)"
         else:
-            point += "  (L/L)"
+            point += " (LL)"
 
         # insert into the points listbox
         self.mc_LBox_points.InsertItems([point],1)
@@ -50,7 +50,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         with open(points_filename) as json_data:
             dat = json.load(json_data)
         for po in dat['points']:
-
-            self.mc_LBox_points.InsertItems([str(po['name'])+','+str(po['lat'])+','+str(po['lon'])],1)
+            point = '['+str(po['lat'])+','+str(po['lon'])+'] (LL)'
+            self.mc_LBox_points.InsertItems([point],1)
         #self.m_txt_log.AppendText("#### Opened File #### \n"+self.filename)
         #self.m_statusBar.SetStatusText(self.filename)
