@@ -9,8 +9,12 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         gui.MasiveCalcsFrame.__init__( self, parent )
 	
     def onTreeItemRClick( self, event ):
-        #print self.m_gDir.GetPath()
-        self.mc_LBox_Files2Process.InsertItems([self.mc_gDir.GetPath()],1)
+        '''
+            Right click over a tree item add files or
+            directorys to the listbox to be processed
+        '''
+        if self.mc_gDir.GetPath() not in self.mc_LBox_Files2Process.GetStrings():
+            self.mc_LBox_Files2Process.InsertItems([self.mc_gDir.GetPath()],1)
 
     def onStartExtractionClick( self, event ):
         print self.mc_LBox_points.GetStrings()
