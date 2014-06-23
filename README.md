@@ -10,6 +10,13 @@ titi is a satelitall image viewer
 * Extract from georederenced images the stored value giving the coordinates (latitude and longitude).
 * Use different kinds of color maps tu visualize the image.
 
+### How to use titi
+
+titi has two files to be used:
+    * titi : the main satelital image viewer
+    * tit-k: a useful tool to make massive calcs over a set of images
+
+
 ### Dependencies
 * python-numpy
 * python-matplotlib
