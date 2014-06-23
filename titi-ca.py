@@ -1,7 +1,7 @@
 import wx
 from MasiveCalcsFrame import MasiveCalcsFrame
 
-# titi launcher
+# titi-k launcher
 
 class titi(wx.App):
     def OnInit(self):

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import rasterIO
 
 def getRowCol(lat,lon,lat0,lon0,dlat,dlon):
