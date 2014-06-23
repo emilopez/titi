@@ -17,6 +17,15 @@ titi has two files to be used:
 * titi : the main satelital image viewer
 * tit-k: a useful tool to make massive calcs over a set of images
 
+You can run anyone from the command line:
+
+    python titi.py
+
+or
+
+    python titi-k.py
+
+From the main viewer, titi, you can invoke titi-k using the graphical user interface over the menues.
 
 ### Dependencies
 * python-numpy
