@@ -14,8 +14,8 @@ titi is a satelitall image viewer
 
 titi has two files to be used:
 
-    * titi : the main satelital image viewer
-    * tit-k: a useful tool to make massive calcs over a set of images
+* titi : the main satelital image viewer
+* tit-k: a useful tool to make massive calcs over a set of images
 
 
 ### Dependencies
