@@ -32,6 +32,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
                 files.append(fn)
             #for point in self.points:
                 #print point
+
         m.GetMasiveValues(files,self.dat)
 
     def onBtnAddPointClick( self, event ):
