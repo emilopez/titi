@@ -28,7 +28,11 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             point = str(po)+':'+str(self.dat[po][0])+','+str(self.dat[po][1])
             self.mc_LBox_points.InsertItems([point],1)
 
-        self.dir_files = list()
+        files_filename = FILES_FN
+        with open(files_filename) as json_files_data:
+            self.dir_files = json.load(json_files_data)['files']
+        for f in self.dir_files:
+            self.mc_LBox_Files2Process.InsertItems([f],1)
 
     def onTreeItemRClick( self, event ):
         '''
