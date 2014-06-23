@@ -2,7 +2,7 @@ import rasterIO
 
 def getRowCol(lat,lon,lat0,lon0,dlat,dlon):
     '''Devuelve la fila y columna correspondiente a una lat y long, donde:
-        lat,lon: es latitud y longitud del punto a extraer
+        lat,lon: es latitud y longitud de la que se desea saber fila y columna
         lat0.lon0: la lat,lon perteneciente al margen superior izq
         dlat,dlon: delta de latitud y longitud.
      '''
@@ -13,13 +13,25 @@ def getRowCol(lat,lon,lat0,lon0,dlat,dlon):
     return row,col
 
 def getLatLon(row,col,lat0,lon0,dlat,dlon):
-    '''Devuelve la latitud y longitud correspondiente a una fila y columna
+    '''
+    Devuelve la latitud y longitud correspondiente a una fila y columna, donde:
+        row,col: fila y columna que se desea saber la lat y lon
+        lat0.lon0: lat,lon perteneciente al margen superior izq
+        dlat,dlon: delta de latitud y longitud.
     '''
     lat = row*dlat + lat0
     lon = col*dlon + lon0
     return lat,lon
 
 def GetMasiveValues(fileLst, pos, band=1):
+    '''
+    Recibe:
+        fileLst: lista de archivos a procesar
+        pos: dict de puntos de observación del tipo {"Santo Domingo": [-31.117368, -60.883001],...}
+        band: banda donde extraer los valores
+    Retorna:
+        <todavia no se>
+    '''
     for fn in fileLst:
         file = rasterIO.opengdalraster(fn)
         driver, Nx, Ny, NBand, proj, geo = rasterIO.readrastermeta(file)
