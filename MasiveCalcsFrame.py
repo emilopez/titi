@@ -32,8 +32,8 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
                 files.append(fn)
             #for point in self.points:
                 #print point
-
-        m.GetMasiveValues(files,self.dat)
+        band = self.mc_txt_band.GetValue()
+        m.GetMasiveValues(files,self.dat, band)
 
     def onBtnAddPointClick( self, event ):
         # get lat/row and lon/col
