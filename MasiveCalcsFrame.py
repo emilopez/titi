@@ -31,7 +31,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             self.dat = json.load(json_data)
         for po in self.dat.keys():
             point = str(po)+':'+str(self.dat[po][0])+','+str(self.dat[po][1])
-            self.mc_LBox_points.InsertItems([point],1)
+            self.mc_LBox_points.Append(point)
 
         # B.  Reads dir from FILES_FN to global self.dir_files and stores into
         # listbox
@@ -39,7 +39,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         with open(files_filename) as json_files_data:
             self.dir_files = json.load(json_files_data)['files']
         for f in self.dir_files:
-            self.mc_LBox_Files2Process.InsertItems([f],1)
+            self.mc_LBox_Files2Process.Append(f)
 
         # A and B have to be modularized with a function which receive the
         # listbox object and the json file to be loaded
@@ -82,8 +82,8 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             point += " (LL)"
         '''
 
-        # insert into the points listbox
-        self.mc_LBox_points.InsertItems([point],1)
+        # append a point into listbox
+        self.mc_LBox_points.Append(point)
 
     def onPointsTypeClick( self, event ):
         choice = self.mc_rBox_points_type.GetStringSelection()
