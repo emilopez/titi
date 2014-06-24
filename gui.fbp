@@ -2318,7 +2318,7 @@
                                                     <event name="OnMouseWheel"></event>
                                                     <event name="OnPaint"></event>
                                                     <event name="OnRightDClick"></event>
-                                                    <event name="OnRightDown"></event>
+                                                    <event name="OnRightDown">onFiles2ProcessRightDown</event>
                                                     <event name="OnRightUp"></event>
                                                     <event name="OnSetFocus"></event>
                                                     <event name="OnSize"></event>

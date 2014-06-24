@@ -218,6 +218,7 @@ class MainFrameBase ( wx.Frame ):
 	
 	def onAboutSelected( self, event ):
 		event.Skip()
+
 	def onFigureClicked( self, event ):
 		event.Skip()
 	def onEnterAxes( self, event ):
@@ -227,7 +228,7 @@ class MainFrameBase ( wx.Frame ):
 	def onMouseMotion( self, event ):
 		event.Skip()
 	def onZoom( self, event ):
-		event.Skip()
+		event.Skip()	
 	
 
 ###########################################################################
@@ -357,6 +358,7 @@ class MasiveCalcsFrame ( wx.Frame ):
 		
 		# Connect Events
 		self.mc_gDir.Bind( wx.EVT_TREE_ITEM_RIGHT_CLICK, self.onTreeItemRClick )
+		self.mc_LBox_Files2Process.Bind( wx.EVT_RIGHT_DOWN, self.onFiles2ProcessRightDown )
 		self.mc_rBox_points_type.Bind( wx.EVT_RADIOBOX, self.onPointsTypeClick )
 		self.mc_btn_add_point.Bind( wx.EVT_BUTTON, self.onBtnAddPointClick )
 		self.mc_btn_file_points.Bind( wx.EVT_FILEPICKER_CHANGED, self.onOpenPointsFile )
@@ -368,6 +370,9 @@ class MasiveCalcsFrame ( wx.Frame ):
 	
 	# Virtual event handlers, overide them in your derived class
 	def onTreeItemRClick( self, event ):
+		event.Skip()
+	
+	def onFiles2ProcessRightDown( self, event ):
 		event.Skip()
 	
 	def onPointsTypeClick( self, event ):
