@@ -105,11 +105,17 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         #self.m_statusBar.SetStatusText(self.filename)
 
     def onFiles2ProcessRightDown( self, event ):
-        item = self.mc_LBox_Files2Process.GetSelection()
-        if item>0:
-            self.mc_LBox_Files2Process.Delete(item)
+        item_num = self.mc_LBox_Files2Process.GetSelection()
+        item_str = self.mc_LBox_Files2Process.GetString(item_num)
+        if item_num>0:
+            self.mc_LBox_Files2Process.Delete(item_num)
+            if item_str in self.dir_files:
+                self.dir_files.remove(item_str)
+
+        print self.dir_files
 
     def onPoints2ExtractRightDown( self, event ):
         item = self.mc_LBox_points.GetSelection()
         if item>0:
             self.mc_LBox_points.Delete(item)
+        print self.dat
