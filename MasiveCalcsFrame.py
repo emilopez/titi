@@ -105,6 +105,10 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         #self.m_statusBar.SetStatusText(self.filename)
 
     def onFiles2ProcessRightDown( self, event ):
+        '''
+        Delete files or dirs from listbox and the global list called
+        self.dir_files when an item is right clicked
+        '''
         item_num = self.mc_LBox_Files2Process.GetSelection()
         item_str = self.mc_LBox_Files2Process.GetString(item_num)
         if item_num>0:
@@ -112,10 +116,16 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             if item_str in self.dir_files:
                 self.dir_files.remove(item_str)
 
-        print self.dir_files
 
     def onPoints2ExtractRightDown( self, event ):
-        item = self.mc_LBox_points.GetSelection()
-        if item>0:
-            self.mc_LBox_points.Delete(item)
-        print self.dat
+        '''
+        Delete points from listbox and the global dict called self.dat
+        when an item is right clicked
+        '''
+        item_num = self.mc_LBox_points.GetSelection()
+        item_str = self.mc_LBox_points.GetString(item_num)
+        if item_num>0:
+            self.mc_LBox_points.Delete(item_num)
+            key = item_str.split(':')[0]
+            if self.dat.has_key(key):
+                self.dat.pop(key)
