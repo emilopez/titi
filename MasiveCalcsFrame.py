@@ -105,4 +105,6 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         #self.m_statusBar.SetStatusText(self.filename)
 
     def onFiles2ProcessRightDown( self, event ):
-        print self.mc_LBox_Files2Process.GetItem()
+        item = self.mc_LBox_Files2Process.GetSelection()
+        if item>0:
+            self.mc_LBox_Files2Process.Delete(item)
