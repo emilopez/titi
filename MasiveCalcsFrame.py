@@ -64,7 +64,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             #for point in self.points:
                 #print point
         band = int(self.mc_txt_band.GetValue())
-        m.GetMasiveValues(files,self.dat, band)
+        m.SaveMasiveValues(outfilename,files,self.dat, band)
 
     def onBtnAddPointClick( self, event ):
         '''
