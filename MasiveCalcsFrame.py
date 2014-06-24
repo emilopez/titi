@@ -54,6 +54,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             self.dir_files.append(self.mc_gDir.GetPath())
 
     def onStartExtractionClick( self, event ):
+
         #print self.dat
         files = []
         for i in self.dir_files:
@@ -64,7 +65,10 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             #for point in self.points:
                 #print point
         band = int(self.mc_txt_band.GetValue())
+        outfilename = self.mc_txt_filename_out.GetValue()
+        self.mc_txt_log.AppendText("Saving results into file: "+outfilename+"\n")
         m.SaveMasiveValues(outfilename,files,self.dat, band)
+        self.mc_txt_log.AppendText("Fished")
 
     def onBtnAddPointClick( self, event ):
         '''
