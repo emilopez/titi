@@ -67,10 +67,13 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         m.GetMasiveValues(files,self.dat, band)
 
     def onBtnAddPointClick( self, event ):
+
+        n_points = len(self.dat)
+
         # get lat/row and lon/col
         lat_row = self.mc_txt_lat.GetValue()
         lon_col = self.mc_txt_lon.GetValue()
-        point =  lat_row + "," + lon_col
+        point =  'PO'+str(n_points+1)+ ':' +lat_row + ',' + lon_col
 
         # concatenate the type of point: lat/lon or row/col
         choice = self.mc_rBox_points_type.GetStringSelection()
@@ -82,8 +85,9 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             point += " (LL)"
         '''
 
-        # append a point into listbox
+        # append a point into listbox and to the global dict
         self.mc_LBox_points.Append(point)
+        self.dat['PO'+str(n_points+1)] = [float(lat_row),float(lon_col)]
 
     def onPointsTypeClick( self, event ):
         choice = self.mc_rBox_points_type.GetStringSelection()
