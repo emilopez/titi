@@ -227,7 +227,7 @@ class MainFrameBase ( wx.Frame ):
 	def onMouseMotion( self, event ):
 		event.Skip()
 	def onZoom( self, event ):
-		event.Skip()	
+		event.Skip()
 
 ###########################################################################
 ## Class MasiveCalcsFrame
@@ -322,7 +322,7 @@ class MasiveCalcsFrame ( wx.Frame ):
 		self.m_staticText13.Wrap( -1 )
 		bSizer16.Add( self.m_staticText13, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 		
-		self.mc_txt_filename_out = wx.TextCtrl( self.m_panel2, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 450,-1 ), 0 )
+		self.mc_txt_filename_out = wx.TextCtrl( self.m_panel2, wx.ID_ANY, u"outfilename.csv", wx.DefaultPosition, wx.Size( 450,-1 ), 0 )
 		bSizer16.Add( self.mc_txt_filename_out, 0, wx.ALL, 5 )
 		
 		self.mc_btn_start_extraction = wx.Button( self.m_panel2, wx.ID_ANY, u"Start extraction", wx.DefaultPosition, wx.Size( 240,-1 ), wx.BU_EXACTFIT )
