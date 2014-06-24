@@ -95,6 +95,9 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         self.dat['PO'+str(n_points+1)] = [float(lat_row),float(lon_col)]
 
     def onPointsTypeClick( self, event ):
+        '''
+        Set and unset labels
+        '''
         choice = self.mc_rBox_points_type.GetStringSelection()
         if choice == "Row/Col":
             self.mc_stxt_lat.SetLabel("Row")
