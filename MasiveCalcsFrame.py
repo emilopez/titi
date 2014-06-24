@@ -50,7 +50,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         directorys to the listbox to be processed
         '''
         if self.mc_gDir.GetPath() not in self.mc_LBox_Files2Process.GetStrings():
-            self.mc_LBox_Files2Process.InsertItems([self.mc_gDir.GetPath()],1)
+            self.mc_LBox_Files2Process.Append(self.mc_gDir.GetPath())
             self.dir_files.append(self.mc_gDir.GetPath())
 
     def onStartExtractionClick( self, event ):
@@ -103,3 +103,6 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             self.mc_LBox_points.InsertItems([point],1)
         #self.m_txt_log.AppendText("#### Opened File #### \n"+self.filename)
         #self.m_statusBar.SetStatusText(self.filename)
+
+    def onFiles2ProcessRightDown( self, event ):
+        print self.mc_LBox_Files2Process.GetItem()
