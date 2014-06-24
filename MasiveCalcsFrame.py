@@ -104,12 +104,16 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             self.mc_stxt_lon.SetLabel("Longitude")
 
     def onOpenPointsFile( self, event ):
+        '''
+        Load points (lat, lon) from a json file
+        to the listbox and to the gloab dict self.dat
+        '''
         points_filename = self.mc_btn_file_points.GetPath()
         with open(points_filename) as json_data:
             self.dat = json.load(json_data)
         for po in self.dat.keys():
             point = str(po)+':'+str(self.dat[po][0])+','+str(self.dat[po][1])
-            self.mc_LBox_points.InsertItems([point],1)
+            self.mc_LBox_points.Append(point)
         #self.m_txt_log.AppendText("#### Opened File #### \n"+self.filename)
         #self.m_statusBar.SetStatusText(self.filename)
 
