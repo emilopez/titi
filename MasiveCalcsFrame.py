@@ -67,7 +67,12 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         m.GetMasiveValues(files,self.dat, band)
 
     def onBtnAddPointClick( self, event ):
-
+        '''
+            Add a point (lat, lon) to a listbox and to
+            the global dict self.dat
+            Only works with Lat Lon pairs, row and col are
+            not implemented yet
+        '''
         n_points = len(self.dat)
 
         # get lat/row and lon/col
