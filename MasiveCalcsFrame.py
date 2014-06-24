@@ -108,3 +108,8 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         item = self.mc_LBox_Files2Process.GetSelection()
         if item>0:
             self.mc_LBox_Files2Process.Delete(item)
+
+    def onPoints2ExtractRightDown( self, event ):
+        item = self.mc_LBox_points.GetSelection()
+        if item>0:
+            self.mc_LBox_points.Delete(item)
