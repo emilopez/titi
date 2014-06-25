@@ -236,7 +236,7 @@ class MainFrameBase ( wx.Frame ):
 class MasiveCalcsFrame ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Massive calcs", pos = wx.DefaultPosition, size = wx.Size( 868,435 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Massive calcs", pos = wx.DefaultPosition, size = wx.Size( 870,490 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -248,14 +248,14 @@ class MasiveCalcsFrame ( wx.Frame ):
 		
 		bSizer13 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.mc_gDir = wx.GenericDirCtrl( self.m_panel2, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 250,100 ), wx.DIRCTRL_3D_INTERNAL|wx.SUNKEN_BORDER, wx.EmptyString, 0 )
+		self.mc_gDir = wx.GenericDirCtrl( self.m_panel2, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,100 ), wx.DIRCTRL_3D_INTERNAL|wx.SUNKEN_BORDER, wx.EmptyString, 0 )
 		
 		self.mc_gDir.ShowHidden( False )
 		bSizer13.Add( self.mc_gDir, 0, wx.ALL|wx.EXPAND, 5 )
 		
-		mc_LBox_Files2ProcessChoices = [ u"Files or dirs to be process" ]
-		self.mc_LBox_Files2Process = wx.ListBox( self.m_panel2, wx.ID_ANY, wx.DefaultPosition, wx.Size( 250,220 ), mc_LBox_Files2ProcessChoices, 0 )
-		bSizer13.Add( self.mc_LBox_Files2Process, 0, wx.ALL, 5 )
+		mc_LBox_Files2ProcessChoices = [ u"Files or dirs to be processed" ]
+		self.mc_LBox_Files2Process = wx.ListBox( self.m_panel2, wx.ID_ANY, wx.DefaultPosition, wx.Size( 200,220 ), mc_LBox_Files2ProcessChoices, 0 )
+		bSizer13.Add( self.mc_LBox_Files2Process, 0, wx.ALL|wx.EXPAND, 5 )
 		
 		bSizer14 = wx.BoxSizer( wx.VERTICAL )
 		
@@ -265,6 +265,13 @@ class MasiveCalcsFrame ( wx.Frame ):
 		bSizer14.Add( self.mc_rBox_points_type, 0, wx.ALL|wx.EXPAND, 5 )
 		
 		gSizer5 = wx.GridSizer( 2, 2, 0, 0 )
+		
+		self.m_staticText11 = wx.StaticText( self.m_panel2, wx.ID_ANY, u"Label", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText11.Wrap( -1 )
+		gSizer5.Add( self.m_staticText11, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+		
+		self.m_textCtrl10 = wx.TextCtrl( self.m_panel2, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		gSizer5.Add( self.m_textCtrl10, 0, wx.ALL|wx.EXPAND, 5 )
 		
 		self.mc_stxt_lat = wx.StaticText( self.m_panel2, wx.ID_ANY, u"Latitude", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.mc_stxt_lat.Wrap( -1 )
@@ -325,7 +332,7 @@ class MasiveCalcsFrame ( wx.Frame ):
 		self.mc_txt_filename_out = wx.TextCtrl( self.m_panel2, wx.ID_ANY, u"outfilename.csv", wx.DefaultPosition, wx.Size( 450,-1 ), 0 )
 		bSizer16.Add( self.mc_txt_filename_out, 0, wx.ALL, 5 )
 		
-		self.mc_btn_start_extraction = wx.Button( self.m_panel2, wx.ID_ANY, u"Start extraction", wx.DefaultPosition, wx.Size( 240,-1 ), wx.BU_EXACTFIT )
+		self.mc_btn_start_extraction = wx.Button( self.m_panel2, wx.ID_ANY, u"Start extraction", wx.DefaultPosition, wx.Size( 260,-1 ), wx.BU_EXACTFIT )
 		bSizer16.Add( self.mc_btn_start_extraction, 0, wx.ALL, 5 )
 		
 		
