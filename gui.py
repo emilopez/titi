@@ -218,6 +218,8 @@ class MainFrameBase ( wx.Frame ):
 	
 	def onAboutSelected( self, event ):
 		event.Skip()
+	def onAboutSelected( self, event ):
+		event.Skip()
 	def onFigureClicked( self, event ):
 		event.Skip()
 	def onEnterAxes( self, event ):
@@ -236,7 +238,7 @@ class MainFrameBase ( wx.Frame ):
 class MasiveCalcsFrame ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Massive calcs", pos = wx.DefaultPosition, size = wx.Size( 870,490 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Massive calcs", pos = wx.DefaultPosition, size = wx.Size( 870,487 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -260,7 +262,7 @@ class MasiveCalcsFrame ( wx.Frame ):
 		bSizer14 = wx.BoxSizer( wx.VERTICAL )
 		
 		mc_rBox_points_typeChoices = [ u"Lat/Lon", u"Row/Col" ]
-		self.mc_rBox_points_type = wx.RadioBox( self.m_panel2, wx.ID_ANY, u"Points type", wx.DefaultPosition, wx.DefaultSize, mc_rBox_points_typeChoices, 1, 0 )
+		self.mc_rBox_points_type = wx.RadioBox( self.m_panel2, wx.ID_ANY, u"Point type", wx.DefaultPosition, wx.DefaultSize, mc_rBox_points_typeChoices, 1, 0 )
 		self.mc_rBox_points_type.SetSelection( 0 )
 		bSizer14.Add( self.mc_rBox_points_type, 0, wx.ALL|wx.EXPAND, 5 )
 		
@@ -358,6 +360,13 @@ class MasiveCalcsFrame ( wx.Frame ):
 		self.SetSizer( bSizer7 )
 		self.Layout()
 		self.m_statusBar2 = self.CreateStatusBar( 1, wx.ST_SIZEGRIP, wx.ID_ANY )
+		self.m_toolBar1 = self.CreateToolBar( wx.TB_HORIZONTAL, wx.ID_ANY )
+		self.m_toolBar1.AddLabelTool( wx.ID_ANY, u"tool", wx.Bitmap( u"titi/icons/document-save.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, u"Save project", u"Save a proyect with the current file and directories to be processed with the extraction points added", None )
+		
+		self.m_toolBar1.AddLabelTool( wx.ID_ANY, u"tool", wx.Bitmap( u"titi/icons/project-open.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, u"Open project", u"Open a previously saved project", None )
+		
+		self.m_toolBar1.Realize()
+		
 		
 		self.Centre( wx.BOTH )
 		
