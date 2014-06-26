@@ -197,3 +197,22 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         # Destroy the dialog
         dlg.Destroy()
     def onOpenProjectClicked( self, event ):
+        # dialog is set up to change the current working directory to the path chosen.
+        dlg = wx.FileDialog(
+            self, message="Choose a proyect file",
+            defaultDir=os.getcwd(),
+            defaultFile="",
+            wildcard=wildcard,
+            style=wx.OPEN
+            )
+
+        # Show the dialog and retrieve the user response. If it is the OK response,
+        # process the data.
+        if dlg.ShowModal() == wx.ID_OK:
+            # This returns a Python list of files that were selected.
+            path = dlg.GetPath()
+
+
+        # Destroy the dialog. Don't do this until you are done with it!
+        # BAD things can happen otherwise!
+        dlg.Destroy()
