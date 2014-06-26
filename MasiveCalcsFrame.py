@@ -27,20 +27,13 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         # Global names for the project files
         self.POINTS_FN = 'points.json'
         self.FILES_FN = 'files.json'
+        self.PROJECT_EXT = 'tip'
+        self.WILDCARD= "Titi proyect (*.tip)|*.tip|"
 
         # Default filenames, temporary method, it will be from a
         # config file in the future
 
-        # A. Reads points from POINTS_FN to global self.dat and stores into
-        # listbox
-        '''
-        points_filename = POINTS_FN
-        with open(points_filename) as json_data:
-            self.dat = json.load(json_data)
-        for po in self.dat.keys():
-            point = str(po)+':'+str(self.dat[po][0])+','+str(self.dat[po][1])
-            self.mc_LBox_points.Append(point)
-        '''
+
         # B.  Reads dir from FILES_FN to global self.dir_files and stores into
         # listbox
         '''
@@ -176,7 +169,6 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             self, message="Save proyect",
             defaultDir=os.getcwd(),
             defaultFile="my_proyect",
-            wildcard=wildcard,
             style=wx.SAVE
             )
 
@@ -184,7 +176,6 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         # process the data.
         if dlg.ShowModal() == wx.ID_OK:
             path_proj_name = dlg.GetPath()
-
             # Create the project dir if not exists
             if not os.path.exists(path_proj_name):
                 os.makedirs(path_proj_name)
@@ -196,21 +187,25 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
 
         # Destroy the dialog
         dlg.Destroy()
+
     def onOpenProjectClicked( self, event ):
         # dialog is set up to change the current working directory to the path chosen.
-        dlg = wx.FileDialog(
+        dlg = wx.DirDialog(
             self, message="Choose a proyect file",
-            defaultDir=os.getcwd(),
-            defaultFile="",
-            wildcard=wildcard,
+            defaultPath=os.getcwd(),
             style=wx.OPEN
             )
 
-        # Show the dialog and retrieve the user response. If it is the OK response,
-        # process the data.
         if dlg.ShowModal() == wx.ID_OK:
-            # This returns a Python list of files that were selected.
-            path = dlg.GetPath()
+            path_proj_name = dlg.GetPath()
+            # A. Reads points from POINTS_FN to global self.dat and stores into
+            # listbox
+
+            with open(os.path.join(path_proj_name, self.POINTS_FN), 'r') as pfile:
+                self.point2extract = json.load(pfile)
+            for po in self.point2extract.keys():
+                point = str(po)+':'+str(self.point2extract[po][0])+','+str(self.point2extract[po][1])
+                self.mc_LBox_points.Append(point)
 
 
         # Destroy the dialog. Don't do this until you are done with it!
