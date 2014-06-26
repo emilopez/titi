@@ -146,7 +146,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         if item_num>0:
             self.mc_LBox_Files2Process.Delete(item_num)
             if item_str in self.files2process['files']:
-                self.files2process.remove(item_str)
+                self.files2process['files'].remove(item_str)
 
 
     def onPoints2ExtractRightDown( self, event ):
