@@ -218,8 +218,6 @@ class MainFrameBase ( wx.Frame ):
 	
 	def onAboutSelected( self, event ):
 		event.Skip()
-	def onAboutSelected( self, event ):
-		event.Skip()
 	def onFigureClicked( self, event ):
 		event.Skip()
 	def onEnterAxes( self, event ):
@@ -230,6 +228,7 @@ class MainFrameBase ( wx.Frame ):
 		event.Skip()
 	def onZoom( self, event ):
 		event.Skip()
+	
 
 ###########################################################################
 ## Class MasiveCalcsFrame
@@ -238,7 +237,7 @@ class MainFrameBase ( wx.Frame ):
 class MasiveCalcsFrame ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Massive calcs", pos = wx.DefaultPosition, size = wx.Size( 870,487 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Massive calcs", pos = wx.DefaultPosition, size = wx.Size( 867,538 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -272,8 +271,8 @@ class MasiveCalcsFrame ( wx.Frame ):
 		self.m_staticText11.Wrap( -1 )
 		gSizer5.Add( self.m_staticText11, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 		
-		self.m_textCtrl10 = wx.TextCtrl( self.m_panel2, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		gSizer5.Add( self.m_textCtrl10, 0, wx.ALL|wx.EXPAND, 5 )
+		self.mc_txt_po_label = wx.TextCtrl( self.m_panel2, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		gSizer5.Add( self.mc_txt_po_label, 0, wx.ALL|wx.EXPAND, 5 )
 		
 		self.mc_stxt_lat = wx.StaticText( self.m_panel2, wx.ID_ANY, u"Latitude", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.mc_stxt_lat.Wrap( -1 )
@@ -378,6 +377,8 @@ class MasiveCalcsFrame ( wx.Frame ):
 		self.mc_btn_file_points.Bind( wx.EVT_FILEPICKER_CHANGED, self.onOpenPointsFile )
 		self.mc_LBox_points.Bind( wx.EVT_RIGHT_DOWN, self.onPoints2ExtractRightDown )
 		self.mc_btn_start_extraction.Bind( wx.EVT_BUTTON, self.onStartExtractionClick )
+		self.Bind( wx.EVT_TOOL, self.onSaveProjectClicked, id = wx.ID_ANY )
+		self.Bind( wx.EVT_TOOL, self.onOpenProjectClicked, id = wx.ID_ANY )
 	
 	def __del__( self ):
 		pass
@@ -403,6 +404,12 @@ class MasiveCalcsFrame ( wx.Frame ):
 		event.Skip()
 	
 	def onStartExtractionClick( self, event ):
+		event.Skip()
+	
+	def onSaveProjectClicked( self, event ):
+		event.Skip()
+	
+	def onOpenProjectClicked( self, event ):
 		event.Skip()
 	
 

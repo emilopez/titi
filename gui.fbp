@@ -1786,7 +1786,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxMenu" expanded="0">
+                <object class="wxMenu" expanded="1">
                     <property name="label">File</property>
                     <property name="name">m_menu_file</property>
                     <property name="permission">protected</property>
@@ -1912,7 +1912,7 @@
             <property name="minimum_size"></property>
             <property name="name">MasiveCalcsFrame</property>
             <property name="pos"></property>
-            <property name="size">870,487</property>
+            <property name="size">867,538</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass"></property>
             <property name="title">Massive calcs</property>
@@ -2559,7 +2559,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_textCtrl10</property>
+                                                                    <property name="name">mc_txt_po_label</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -4100,7 +4100,7 @@
                     <event name="OnAuiToolBarRightClick"></event>
                     <event name="OnAuiToolBarToolDropDown"></event>
                     <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
+                    <event name="OnToolClicked">onSaveProjectClicked</event>
                     <event name="OnToolEnter"></event>
                     <event name="OnToolRClicked"></event>
                     <event name="OnUpdateUI"></event>
@@ -4121,7 +4121,7 @@
                     <event name="OnAuiToolBarRightClick"></event>
                     <event name="OnAuiToolBarToolDropDown"></event>
                     <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
+                    <event name="OnToolClicked">onOpenProjectClicked</event>
                     <event name="OnToolEnter"></event>
                     <event name="OnToolRClicked"></event>
                     <event name="OnUpdateUI"></event>
