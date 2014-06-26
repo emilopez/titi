@@ -24,12 +24,13 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         self.files2process = {'files':[]}
         self.point2extract = {}
 
+        # Global names for the project files
+        self.POINTS_FN = 'points.json'
+        self.FILES_FN = 'files.json'
+
         # Default filenames, temporary method, it will be from a
         # config file in the future
-        '''
-        POINTS_FN = 'points.json'
-        FILES_FN = 'files.json'
-        '''
+
         # A. Reads points from POINTS_FN to global self.dat and stores into
         # listbox
         '''
@@ -183,17 +184,16 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         # process the data.
         if dlg.ShowModal() == wx.ID_OK:
             path_proj_name = dlg.GetPath()
-            points_fname = 'points.json'
-            dirs_fname = 'files.json'
+
             # Create the project dir if not exists
             if not os.path.exists(path_proj_name):
                 os.makedirs(path_proj_name)
                 # Save two json files with points and files
-                with open(os.path.join(path_proj_name, points_fname), 'wb') as pfile:
+                with open(os.path.join(path_proj_name,  self.POINTS_FN), 'wb') as pfile:
                     json.dump(self.point2extract, pfile)
-                with open(os.path.join(path_proj_name, dirs_fname), 'wb') as dfile:
+                with open(os.path.join(path_proj_name, self.FILES_FN), 'wb') as dfile:
                     json.dump(self.files2process, dfile)
 
         # Destroy the dialog
         dlg.Destroy()
-    #def onOpenProjectClicked( self, event ):
+    def onOpenProjectClicked( self, event ):
