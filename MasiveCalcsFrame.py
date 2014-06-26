@@ -171,6 +171,11 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         dlg.Destroy()
 
     def onOpenProjectClicked( self, event ):
+        '''
+        Load from proyect dir the two files
+        files.json containing the files and directories to be processed
+        points.json with the points to be extracted from the previous files
+        '''
         # dialog is set up to change the current working directory to the path chosen.
         dlg = wx.DirDialog(
             self, message="Choose a proyect file",
