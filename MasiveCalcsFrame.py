@@ -60,7 +60,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
     def onBtnAddPointClick( self, event ):
         '''
             Add a point (lat, lon) to a listbox and to
-            the global dict self.dat
+            the global dict self.point2extract
             Only works with Lat Lon pairs, row and col are
             not implemented yet
         '''
@@ -83,9 +83,9 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         '''
 
         # append a point into listbox and to the global dict
-        self.mc_LBox_points.Append(point)
-        #self.dat['PO'+str(n_points+1)] = [float(lat_row),float(lon_col)]
-        self.point2extract[po_label] = [float(lat_row),float(lon_col)]
+        if point not in self.mc_LBox_points.GetStrings():
+            self.mc_LBox_points.Append(point)
+            self.point2extract[po_label] = [float(lat_row),float(lon_col)]
 
     def onPointsTypeClick( self, event ):
         '''
