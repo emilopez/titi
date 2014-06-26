@@ -27,25 +27,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         # Global names for the project files
         self.POINTS_FN = 'points.json'
         self.FILES_FN = 'files.json'
-        self.PROJECT_EXT = 'tip'
-        self.WILDCARD= "Titi proyect (*.tip)|*.tip|"
 
-        # Default filenames, temporary method, it will be from a
-        # config file in the future
-
-
-        # B.  Reads dir from FILES_FN to global self.dir_files and stores into
-        # listbox
-        '''
-        files_filename = FILES_FN
-        with open(files_filename) as json_files_data:
-            self.dir_files = json.load(json_files_data)['files']
-        for f in self.dir_files:
-            self.mc_LBox_Files2Process.Append(f)
-
-        # A and B have to be modularized with a function which receive the
-        # listbox object and the json file to be loaded
-        '''
     def onTreeItemRClick( self, event ):
         '''
         Right click over a tree item add files or
@@ -197,17 +179,27 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             )
 
         if dlg.ShowModal() == wx.ID_OK:
-            path_proj_name = dlg.GetPath()
-            # A. Reads points from POINTS_FN to global self.dat and stores into
-            # listbox
+            # Clean both ListBox
+            self.mc_LBox_points.Clear()
+            self.mc_LBox_Files2Process.Clear()
 
+            path_proj_name = dlg.GetPath()
+            # A. Reads points from POINTS_FN to global self.point2extract
+            # and stores into listbox
             with open(os.path.join(path_proj_name, self.POINTS_FN), 'r') as pfile:
                 self.point2extract = json.load(pfile)
             for po in self.point2extract.keys():
                 point = str(po)+':'+str(self.point2extract[po][0])+','+str(self.point2extract[po][1])
                 self.mc_LBox_points.Append(point)
 
+            # B.  Reads dir from FILES_FN to global self.files2process
+            # and stores into listbox
+            with open(os.path.join(path_proj_name, self.FILES_FN), 'r') as dfile:
+                self.files2process = json.load(dfile)
+            for f in self.files2process['files']:
+                self.mc_LBox_Files2Process.Append(f)
 
-        # Destroy the dialog. Don't do this until you are done with it!
-        # BAD things can happen otherwise!
+            # A and B have to be modularized with a function which receive the
+            # listbox object and the json file to be loaded
+
         dlg.Destroy()
