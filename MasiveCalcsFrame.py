@@ -21,6 +21,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         # Set the current directory as the initial
         self.mc_gDir.SetPath(os.getcwd())
 
+        # Global data structures to store points and files
         self.files2process = {'files':[]}
         self.point2extract = {}
 
@@ -203,8 +204,5 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
                 self.files2process = json.load(dfile)
             for f in self.files2process['files']:
                 self.mc_LBox_Files2Process.Append(f)
-
-            # A and B have to be modularized with a function which receive the
-            # listbox object and the json file to be loaded
 
         dlg.Destroy()
