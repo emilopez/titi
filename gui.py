@@ -14,6 +14,9 @@ matplotlib.use('WXAgg')
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
 
+wx.Save = 1000
+wx.Open = 1001
+
 ###########################################################################
 ## Class MainFrameBase
 ###########################################################################
@@ -359,12 +362,12 @@ class MasiveCalcsFrame ( wx.Frame ):
 		self.SetSizer( bSizer7 )
 		self.Layout()
 		self.m_statusBar2 = self.CreateStatusBar( 1, wx.ST_SIZEGRIP, wx.ID_ANY )
-		self.m_toolBar1 = self.CreateToolBar( wx.TB_HORIZONTAL, wx.ID_ANY )
-		self.m_toolBar1.AddLabelTool( wx.ID_ANY, u"tool", wx.Bitmap( u"titi/icons/document-save.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, u"Save project", u"Save a proyect with the current file and directories to be processed with the extraction points added", None )
+		self.mc_toolBar1 = self.CreateToolBar( wx.TB_HORIZONTAL, wx.ID_ANY )
+		self.mc_toolBar1.AddLabelTool( wx.Save, u"Save", wx.Bitmap( u"titi/icons/document-save.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, u"Save project", u"Save a proyect with the current file and directories to be processed with the extraction points added", None )
 		
-		self.m_toolBar1.AddLabelTool( wx.ID_ANY, u"tool", wx.Bitmap( u"titi/icons/project-open.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, u"Open project", u"Open a previously saved project", None )
+		self.mc_toolBar1.AddLabelTool( wx.Open, u"Open", wx.Bitmap( u"titi/icons/project-open.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, u"Open project", u"Open a previously saved project", None )
 		
-		self.m_toolBar1.Realize()
+		self.mc_toolBar1.Realize()
 		
 		
 		self.Centre( wx.BOTH )
@@ -377,8 +380,8 @@ class MasiveCalcsFrame ( wx.Frame ):
 		self.mc_btn_file_points.Bind( wx.EVT_FILEPICKER_CHANGED, self.onOpenPointsFile )
 		self.mc_LBox_points.Bind( wx.EVT_RIGHT_DOWN, self.onPoints2ExtractRightDown )
 		self.mc_btn_start_extraction.Bind( wx.EVT_BUTTON, self.onStartExtractionClick )
-		self.Bind( wx.EVT_TOOL, self.onSaveProjectClicked, id = wx.ID_ANY )
-		self.Bind( wx.EVT_TOOL, self.onOpenProjectClicked, id = wx.ID_ANY )
+		self.Bind( wx.EVT_TOOL, self.onSaveProjectClicked, id = wx.Save )
+		self.Bind( wx.EVT_TOOL, self.onOpenProjectClicked, id = wx.Open )
 	
 	def __del__( self ):
 		pass

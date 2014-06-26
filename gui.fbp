@@ -4042,7 +4042,7 @@
                 <property name="minimize_button">0</property>
                 <property name="minimum_size"></property>
                 <property name="moveable">1</property>
-                <property name="name">m_toolBar1</property>
+                <property name="name">mc_toolBar1</property>
                 <property name="packing">1</property>
                 <property name="pane_border">1</property>
                 <property name="pane_position"></property>
@@ -4087,9 +4087,9 @@
                 <object class="tool" expanded="1">
                     <property name="bitmap">Load From File; /home/emiliano/data/dev/proyectos_git/titi/titi/icons/document-save.png</property>
                     <property name="context_menu">0</property>
-                    <property name="id">wxID_ANY</property>
+                    <property name="id">wxSave</property>
                     <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">tool</property>
+                    <property name="label">Save</property>
                     <property name="name">mc_btn_save_proj</property>
                     <property name="permission">protected</property>
                     <property name="statusbar">Save a proyect with the current file and directories to be processed with the extraction points added</property>
@@ -4108,9 +4108,9 @@
                 <object class="tool" expanded="1">
                     <property name="bitmap">Load From File; /home/emiliano/data/dev/proyectos_git/titi/titi/icons/project-open.png</property>
                     <property name="context_menu">0</property>
-                    <property name="id">wxID_ANY</property>
+                    <property name="id">wxOpen</property>
                     <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">tool</property>
+                    <property name="label">Open</property>
                     <property name="name">mc_btn_open_proj</property>
                     <property name="permission">protected</property>
                     <property name="statusbar">Open a previously saved project</property>
