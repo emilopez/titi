@@ -18,23 +18,31 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         '''
         gui.MasiveCalcsFrame.__init__( self, parent )
 
+        # Set the current directory as the initial
+        self.mc_gDir.SetPath(os.getcwd())
+
+        self.files2process = {'files':[]}
+        self.point2extract = {}
+
         # Default filenames, temporary method, it will be from a
         # config file in the future
-
+        '''
         POINTS_FN = 'points.json'
         FILES_FN = 'files.json'
-
+        '''
         # A. Reads points from POINTS_FN to global self.dat and stores into
         # listbox
+        '''
         points_filename = POINTS_FN
         with open(points_filename) as json_data:
             self.dat = json.load(json_data)
         for po in self.dat.keys():
             point = str(po)+':'+str(self.dat[po][0])+','+str(self.dat[po][1])
             self.mc_LBox_points.Append(point)
-
+        '''
         # B.  Reads dir from FILES_FN to global self.dir_files and stores into
         # listbox
+        '''
         files_filename = FILES_FN
         with open(files_filename) as json_files_data:
             self.dir_files = json.load(json_files_data)['files']
@@ -43,15 +51,17 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
 
         # A and B have to be modularized with a function which receive the
         # listbox object and the json file to be loaded
-
+        '''
     def onTreeItemRClick( self, event ):
         '''
         Right click over a tree item add files or
-        directorys to the listbox to be processed
+        directorys to the listbox and to the global variable
+        files2process['files'] to be processed
         '''
         if self.mc_gDir.GetPath() not in self.mc_LBox_Files2Process.GetStrings():
             self.mc_LBox_Files2Process.Append(self.mc_gDir.GetPath())
-            self.dir_files.append(self.mc_gDir.GetPath())
+            self.files2process['files'].append(self.mc_gDir.GetPath())
+
 
     def onStartExtractionClick( self, event ):
 
@@ -77,12 +87,13 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             Only works with Lat Lon pairs, row and col are
             not implemented yet
         '''
-        n_points = len(self.dat)
+        n_points = len(self.point2extract)
 
         # get lat/row and lon/col
         lat_row = self.mc_txt_lat.GetValue()
         lon_col = self.mc_txt_lon.GetValue()
-        point =  'PO'+str(n_points+1)+ ':' +lat_row + ',' + lon_col
+        po_label = self.mc_txt_po_label.GetValue()
+        point =  po_label+ ':' +lat_row + ',' + lon_col
 
         # concatenate the type of point: lat/lon or row/col
         choice = self.mc_rBox_points_type.GetStringSelection()
@@ -96,7 +107,8 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
 
         # append a point into listbox and to the global dict
         self.mc_LBox_points.Append(point)
-        self.dat['PO'+str(n_points+1)] = [float(lat_row),float(lon_col)]
+        #self.dat['PO'+str(n_points+1)] = [float(lat_row),float(lon_col)]
+        self.point2extract[po_label] = [float(lat_row),float(lon_col)]
 
     def onPointsTypeClick( self, event ):
         '''
@@ -133,8 +145,8 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         item_str = self.mc_LBox_Files2Process.GetString(item_num)
         if item_num>0:
             self.mc_LBox_Files2Process.Delete(item_num)
-            if item_str in self.dir_files:
-                self.dir_files.remove(item_str)
+            if item_str in self.files2process['files']:
+                self.files2process.remove(item_str)
 
 
     def onPoints2ExtractRightDown( self, event ):
@@ -147,5 +159,45 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         if item_num>0:
             self.mc_LBox_points.Delete(item_num)
             key = item_str.split(':')[0]
-            if self.dat.has_key(key):
-                self.dat.pop(key)
+            if self.point2extract.has_key(key):
+                self.point2extract.pop(key)
+
+    def onSaveProjectClicked( self, event ):
+        # Pre-establish a file filter so that the dialog
+        # only shows the extension(s) you want it to.
+        wildcard = "Titi proyect (*.tip)|*.tip|"
+
+
+        # Create the dialog. In this case the current directory is forced as the starting
+        # directory for the dialog.
+
+        dlg = wx.FileDialog(
+            self, message="Save proyect",
+            defaultDir=os.getcwd(),
+            defaultFile="my_proyect",
+            wildcard=wildcard,
+            style=wx.SAVE
+            )
+
+        # Show the dialog and retrieve the user response. If it is the OK response,
+        # process the data.
+        if dlg.ShowModal() == wx.ID_OK:
+            path_proj_name = dlg.GetPath()
+            points_fname = 'points.json'
+            dirs_fname = 'files.json'
+            '''
+            if not os.path.exists(path_proj_name):
+                os.makedirs(path_proj_name)
+                with open(os.path.join(path_proj_name, filename), 'wb') as temp_file:
+                    temp_file.write(buff)
+            '''
+            print self.point2extract
+            print
+            print self.files2process
+
+
+
+        # Destroy the dialog. Don't do this until you are done with it!
+        # BAD things can happen otherwise!
+        dlg.Destroy()
+    #def onOpenProjectClicked( self, event ):
