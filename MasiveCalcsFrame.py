@@ -163,14 +163,14 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
                 self.point2extract.pop(key)
 
     def onSaveProjectClicked( self, event ):
-        # Pre-establish a file filter so that the dialog
-        # only shows the extension(s) you want it to.
-        wildcard = "Titi proyect (*.tip)|*.tip|"
+        '''
+        Create the user written dir to the proyect with two files
+        files.json containing the files and directories to be processed
+        points.json with the points to be extracted from the previous files
+        '''
 
-
-        # Create the dialog. In this case the current directory is forced as the starting
-        # directory for the dialog.
-
+        # Create the dialog. In this case the current directory is forced as
+        # the starting directory for the dialog.
         dlg = wx.FileDialog(
             self, message="Save proyect",
             defaultDir=os.getcwd(),
@@ -185,19 +185,15 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             path_proj_name = dlg.GetPath()
             points_fname = 'points.json'
             dirs_fname = 'files.json'
-            '''
+            # Create the project dir if not exists
             if not os.path.exists(path_proj_name):
                 os.makedirs(path_proj_name)
-                with open(os.path.join(path_proj_name, filename), 'wb') as temp_file:
-                    temp_file.write(buff)
-            '''
-            print self.point2extract
-            print
-            print self.files2process
+                # Save two json files with points and files
+                with open(os.path.join(path_proj_name, points_fname), 'wb') as pfile:
+                    json.dump(self.point2extract, pfile)
+                with open(os.path.join(path_proj_name, dirs_fname), 'wb') as dfile:
+                    json.dump(self.files2process, dfile)
 
-
-
-        # Destroy the dialog. Don't do this until you are done with it!
-        # BAD things can happen otherwise!
+        # Destroy the dialog
         dlg.Destroy()
     #def onOpenProjectClicked( self, event ):
