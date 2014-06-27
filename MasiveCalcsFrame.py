@@ -7,6 +7,7 @@ import json
 import glob
 import os
 import module as m
+import thread
 
 # Implementing AboutFrame
 class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
@@ -51,9 +52,10 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             for fn in fileLst:
                 files.append(fn)
         band = int(self.mc_txt_band.GetValue())
-
-        m.SaveMasiveValues(outfilename,files,self.point2extract, band)
-        self.mc_txt_log.AppendText("Fished")
+        # launch a thread to avoid block the GUI
+        thread.start_new_thread(m.SaveMasiveValues,(outfilename,files,self.point2extract, band))
+        #m.SaveMasiveValues(outfilename,files,self.point2extract, band)
+        #self.mc_txt_log.AppendText("Fished")
 
     def onBtnAddPointClick( self, event ):
         '''
