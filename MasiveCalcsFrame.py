@@ -107,8 +107,8 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         points_filename = self.mc_btn_file_points.GetPath()
         with open(points_filename) as json_data:
             self.point2extract = json.load(json_data)
-        for po in self.dat.keys():
-            point = str(po)+':'+str(self.dat[po][0])+','+str(self.dat[po][1])
+        for po in self.point2extract.keys():
+            point = str(po)+':'+str(self.point2extract[po][0])+','+str(self.point2extract[po][1])
             self.mc_LBox_points.Append(point)
         #self.m_txt_log.AppendText("#### Opened File #### \n"+self.filename)
         #self.m_statusBar.SetStatusText(self.filename)
