@@ -102,11 +102,11 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
     def onOpenPointsFile( self, event ):
         '''
         Load points (lat, lon) from a json file
-        to the listbox and to the gloab dict self.dat
+        to the listbox and to the global dict self.point2extract
         '''
         points_filename = self.mc_btn_file_points.GetPath()
         with open(points_filename) as json_data:
-            self.dat = json.load(json_data)
+            self.point2extract = json.load(json_data)
         for po in self.dat.keys():
             point = str(po)+':'+str(self.dat[po][0])+','+str(self.dat[po][1])
             self.mc_LBox_points.Append(point)
