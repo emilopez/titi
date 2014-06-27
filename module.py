@@ -49,8 +49,6 @@ def SaveMasiveValues(outfilename,fileLst, pos, band=1):
             lon0,lat0,dlon,dlat = geo[0],geo[3],geo[1],geo[5]
             etrMap = rasterIO.readrasterband(file, band)
             csvrow = [fn]
-            # Row y Col correspondiente a lat lon
-            #print "+ "+fn
             for po in pos.keys():
                 row,col = getRowCol(pos[po][0],pos[po][1],lat0,lon0,dlat,dlon)
                 if etrMap.mask[row][col]:
