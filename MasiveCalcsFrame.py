@@ -41,19 +41,17 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
 
 
     def onStartExtractionClick( self, event ):
-
+        self.mc_txt_log.AppendText("Saving results into file: "+outfilename+"\n")
         #print self.dat
         files = []
-        for i in self.dir_files:
+        for i in self.files2process:
             imgs = os.path.join(i,"*.*")
             fileLst = glob.glob(imgs)
             for fn in fileLst:
                 files.append(fn)
-            #for point in self.points:
-                #print point
         band = int(self.mc_txt_band.GetValue())
         outfilename = self.mc_txt_filename_out.GetValue()
-        self.mc_txt_log.AppendText("Saving results into file: "+outfilename+"\n")
+
         m.SaveMasiveValues(outfilename,files,self.dat, band)
         self.mc_txt_log.AppendText("Fished")
 
