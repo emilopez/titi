@@ -45,7 +45,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         self.mc_txt_log.AppendText("Saving results into file: "+outfilename+"\n")
         #print self.dat
         files = []
-        for i in self.files2process:
+        for i in self.files2process['files']:
             imgs = os.path.join(i,"*.*")
             fileLst = glob.glob(imgs)
             for fn in fileLst:
