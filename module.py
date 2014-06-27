@@ -30,9 +30,11 @@ def SaveMasiveValues(outfilename,fileLst, pos, band=1):
     Recibe:
         :outfilename: nombre de archivo csv de salida
         :fileLst: lista de archivos a procesar
-        :pos: dict de puntos de observación del tipo {"Santo Domingo": [-31.117368, -60.883001],...}
+        :pos: dict de puntos de observación del tipo
+            {"Santo Domingo": [-31.117368, -60.883001],...}
         :band: banda donde extraer los valores
-
+    Escribe en outfilename (formato csv) los valores extraidos por cada
+        archivo en fileLst para cada punto en pos
     '''
     header1 = ['filename'] + pos.keys()
     header2 = [''] + [str(pos[k][0])+','+str(pos[k][1]) for k in pos.keys()]
