@@ -24,7 +24,7 @@ wx.Open = 1001
 class MainFrameBase ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"titi", pos = wx.DefaultPosition, size = wx.Size( 882,683 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Titi", pos = wx.DefaultPosition, size = wx.Size( 882,683 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -221,6 +221,7 @@ class MainFrameBase ( wx.Frame ):
 	
 	def onAboutSelected( self, event ):
 		event.Skip()
+	
 	def onFigureClicked( self, event ):
 		event.Skip()
 	def onEnterAxes( self, event ):
@@ -231,8 +232,6 @@ class MainFrameBase ( wx.Frame ):
 		event.Skip()
 	def onZoom( self, event ):
 		event.Skip()
-	
-
 ###########################################################################
 ## Class MasiveCalcsFrame
 ###########################################################################
@@ -240,7 +239,7 @@ class MainFrameBase ( wx.Frame ):
 class MasiveCalcsFrame ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Massive calcs", pos = wx.DefaultPosition, size = wx.Size( 867,538 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Titi-k", pos = wx.DefaultPosition, size = wx.Size( 867,538 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
