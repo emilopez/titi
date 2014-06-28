@@ -42,9 +42,11 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
 
 
     def onStartExtractionClick( self, event ):
+        '''
+        Set the arguments and call a function to save the results
+        '''
         outfilename = self.mc_txt_filename_out.GetValue()
         self.mc_txt_log.AppendText("Saving results into file: "+outfilename+"\n")
-        #print self.dat
         files = []
         for i in self.files2process['files']:
             imgs = os.path.join(i,"*.*")
@@ -54,8 +56,6 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         band = int(self.mc_txt_band.GetValue())
         # launch a thread to avoid block the GUI
         thread.start_new_thread(m.SaveMasiveValues,(outfilename,files,self.point2extract, band))
-        #m.SaveMasiveValues(outfilename,files,self.point2extract, band)
-        #self.mc_txt_log.AppendText("Fished")
 
     def onBtnAddPointClick( self, event ):
         '''
