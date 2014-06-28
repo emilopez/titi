@@ -220,4 +220,5 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             for f in self.files2process['files']:
                 self.mc_LBox_Files2Process.Append(f)
             self.PRJ_SAVED_PATH = path_proj_name
+            self.SetTitle(self.GetTitle()+' - '+path_proj_name)
         dlg.Destroy()
