@@ -116,7 +116,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
     def onFiles2ProcessRightDown( self, event ):
         '''
         Delete files or dirs from listbox and the global list called
-        self.dir_files when an item is right clicked
+        self.files2process when an item is right clicked
         '''
         item_num = self.mc_LBox_Files2Process.GetSelection()
         item_str = self.mc_LBox_Files2Process.GetString(item_num)

@@ -55,9 +55,9 @@ def SaveMasiveValues(outfilename,fileLst, pos, band=1):
                 row,col = getRowCol(pos[po][0],pos[po][1],lat0,lon0,dlat,dlon)
                 if etrMap.mask[row][col]:
                     # Valor Invalido
-                    p=n=0.0;
-                    for m in xrange(3):
-                        for n in xrange(3):
+                    p = n = 0.0;
+                    for m in range(3):
+                        for n in range(3):
                             if not(etrMap.mask[m+row-1][n+col-1]):
                                 p+=etrMap[m+row-1][n+col-1]
                                 n+=1.0
