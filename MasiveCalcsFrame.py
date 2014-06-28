@@ -13,9 +13,9 @@ import thread
 class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
     def __init__( self, parent ):
         '''
-            Al inicio carga por defecto dos archivos:
-                :points.json: archivo de los puntos de observación
-                :files.json: archivos y directorios para procesar
+            Al inicio crea dos estructuras:
+                :self.files2process: puntos de observación
+                :self.point2extract: archivos y directorios para procesar
         '''
         gui.MasiveCalcsFrame.__init__( self, parent )
 
