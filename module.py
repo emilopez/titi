@@ -64,5 +64,4 @@ def SaveMasiveValues(outfilename,fileLst, pos, band=1):
                     csvrow += [str(p/n)+'#']
                 else:
                     csvrow += [etrMap[row][col]]
-            #print csvrow
             spamwriter.writerow(csvrow)
