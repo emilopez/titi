@@ -50,10 +50,13 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         self.mc_txt_log.AppendText("Saving results into file: "+outfilename+"\n")
         files = []
         for i in self.files2process['files']:
-            imgs = os.path.join(i,"*.*")
-            fileLst = glob.glob(imgs)
-            for fn in fileLst:
-                files.append(fn)
+            if os.path.isfile(i):
+                files.append(i)
+            else:
+                imgs = os.path.join(i,"*.*")
+                fileLst = glob.glob(imgs)
+                for fn in fileLst:
+                    files.append(fn)
         band = int(self.mc_txt_band.GetValue())
         # launch a thread to avoid blocking the GUI
         thread.start_new_thread(m.SaveMasiveValues,(outfilename,files,self.point2extract, band))
