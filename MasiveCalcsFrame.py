@@ -200,6 +200,10 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             self.mc_LBox_points.Clear()
             self.mc_LBox_Files2Process.Clear()
 
+            self.mc_LBox_Files2Process.Append('Files or dirs to be processed')
+            self.mc_LBox_points.Append('Points to be extracted')
+
+
             path_proj_name = dlg.GetPath()
             # A. Reads points from POINTS_FN to global self.point2extract
             # and stores into listbox
