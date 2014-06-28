@@ -26,9 +26,10 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         self.files2process = {'files':[]}
         self.point2extract = {}
 
-        # Global names for the project files
+        # Global names for the project files and status
         self.POINTS_FN = 'points.json'
         self.FILES_FN = 'files.json'
+        self.PRJ_SAVED_PATH= None
 
     def onTreeItemRClick( self, event ):
         '''
@@ -144,32 +145,42 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         Create the user written dir to the proyect with two files
         files.json containing the files and directories to be processed
         points.json with the points to be extracted from the previous files
+        If the project was previously saved does not show the dialog and
+        does overwrite the files into the self.PRJ_SAVED_PATH path
         '''
+        if not self.PRJ_SAVED_PATH:
+            # Create the dialog. In this case the current directory is forced as
+            # the starting directory for the dialog.
+            dlg = wx.FileDialog(
+                self, message="Save proyect",
+                defaultDir=os.getcwd(),
+                defaultFile="my_proyect",
+                style=wx.SAVE
+                )
 
-        # Create the dialog. In this case the current directory is forced as
-        # the starting directory for the dialog.
-        dlg = wx.FileDialog(
-            self, message="Save proyect",
-            defaultDir=os.getcwd(),
-            defaultFile="my_proyect",
-            style=wx.SAVE
-            )
+            # Show the dialog and retrieve the user response. If it is the OK response,
+            # process the data.
+            if dlg.ShowModal() == wx.ID_OK:
+                path_proj_name = dlg.GetPath()
+                # Create the project dir if not exists
+                if not os.path.exists(path_proj_name):
+                    os.makedirs(path_proj_name)
+                    # Save two json files with points and files
+                    with open(os.path.join(path_proj_name,  self.POINTS_FN), 'wb') as pfile:
+                        json.dump(self.point2extract, pfile)
+                    with open(os.path.join(path_proj_name, self.FILES_FN), 'wb') as dfile:
+                        json.dump(self.files2process, dfile)
+                    outfilename = self.mc_txt_filename_out.GetValue()
+                    self.mc_txt_filename_out.SetValue(os.path.join(path_proj_name,outfilename))
+                    self.PRJ_SAVED_PATH = path_proj_name
 
-        # Show the dialog and retrieve the user response. If it is the OK response,
-        # process the data.
-        if dlg.ShowModal() == wx.ID_OK:
-            path_proj_name = dlg.GetPath()
-            # Create the project dir if not exists
-            if not os.path.exists(path_proj_name):
-                os.makedirs(path_proj_name)
-                # Save two json files with points and files
-                with open(os.path.join(path_proj_name,  self.POINTS_FN), 'wb') as pfile:
-                    json.dump(self.point2extract, pfile)
-                with open(os.path.join(path_proj_name, self.FILES_FN), 'wb') as dfile:
-                    json.dump(self.files2process, dfile)
-
-        # Destroy the dialog
-        dlg.Destroy()
+            # Destroy the dialog
+            dlg.Destroy()
+        else:
+            with open(os.path.join(self.PRJ_SAVED_PATH,  self.POINTS_FN), 'wb') as pfile:
+                json.dump(self.point2extract, pfile)
+            with open(os.path.join(self.PRJ_SAVED_PATH, self.FILES_FN), 'wb') as dfile:
+                json.dump(self.files2process, dfile)
 
     def onOpenProjectClicked( self, event ):
         '''
@@ -204,5 +215,5 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
                 self.files2process = json.load(dfile)
             for f in self.files2process['files']:
                 self.mc_LBox_Files2Process.Append(f)
-
+            self.PRJ_SAVED_PATH = path_proj_name
         dlg.Destroy()
