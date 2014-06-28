@@ -54,7 +54,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             for fn in fileLst:
                 files.append(fn)
         band = int(self.mc_txt_band.GetValue())
-        # launch a thread to avoid block the GUI
+        # launch a thread to avoid blocking the GUI
         thread.start_new_thread(m.SaveMasiveValues,(outfilename,files,self.point2extract, band))
 
     def onBtnAddPointClick( self, event ):
