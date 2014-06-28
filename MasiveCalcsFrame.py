@@ -181,7 +181,10 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
                 json.dump(self.point2extract, pfile)
             with open(os.path.join(self.PRJ_SAVED_PATH, self.FILES_FN), 'wb') as dfile:
                 json.dump(self.files2process, dfile)
-
+        # Append project dir to the frame title
+        if self.PRJ_SAVED_PATH:
+            self.SetTitle('Titi-k - '+self.PRJ_SAVED_PATH)
+            self.mc_txt_log.AppendText('Project saved: '+self.PRJ_SAVED_PATH+'\n')
     def onOpenProjectClicked( self, event ):
         '''
         Load from proyect dir the two files
@@ -196,13 +199,11 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             )
 
         if dlg.ShowModal() == wx.ID_OK:
-            # Clean both ListBox
+            # Clean both ListBox and append sms
             self.mc_LBox_points.Clear()
             self.mc_LBox_Files2Process.Clear()
-
             self.mc_LBox_Files2Process.Append('Files or dirs to be processed')
             self.mc_LBox_points.Append('Points to be extracted')
-
 
             path_proj_name = dlg.GetPath()
             # A. Reads points from POINTS_FN to global self.point2extract
@@ -220,5 +221,7 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
             for f in self.files2process['files']:
                 self.mc_LBox_Files2Process.Append(f)
             self.PRJ_SAVED_PATH = path_proj_name
-            self.SetTitle(self.GetTitle()+' - '+path_proj_name)
+            #Append project dir to the frame title
+            self.SetTitle('Titi-k - '+path_proj_name)
+            self.mc_txt_log.AppendText('Opened project: '+path_proj_name+'\n')
         dlg.Destroy()
