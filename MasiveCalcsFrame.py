@@ -26,10 +26,11 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
         self.files2process = {'files':[]}
         self.point2extract = {}
 
-        # Global names for the project files and status
+        # Global var for the project files and status
         self.POINTS_FN = 'points.json'
         self.FILES_FN = 'files.json'
-        self.PRJ_SAVED_PATH= None
+        self.PRJ_SAVED_PATH = None
+        self.OUT_FNAME = 'outfile.csv'
 
     def onTreeItemRClick( self, event ):
         '''
@@ -173,8 +174,8 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
                         json.dump(self.point2extract, pfile)
                     with open(os.path.join(path_proj_name, self.FILES_FN), 'wb') as dfile:
                         json.dump(self.files2process, dfile)
-                    outfilename = self.mc_txt_filename_out.GetValue()
-                    self.mc_txt_filename_out.SetValue(os.path.join(path_proj_name,outfilename))
+
+                    self.mc_txt_filename_out.SetValue(os.path.join(path_proj_name,self.OUT_FNAME))
                     self.PRJ_SAVED_PATH = path_proj_name
 
             # Destroy the dialog
@@ -223,8 +224,15 @@ class MasiveCalcsFrame( gui.MasiveCalcsFrame ):
                 self.files2process = json.load(dfile)
             for f in self.files2process['files']:
                 self.mc_LBox_Files2Process.Append(f)
+
+            # Set the dir path of the last file loaded
+            self.mc_gDir.SetPath(f)
+
+            # Set the path project in the global variable
             self.PRJ_SAVED_PATH = path_proj_name
-            #Append project dir to the frame title
+
+            # Append project dir to the frame title
             self.SetTitle('Titi-k - '+path_proj_name)
+            self.mc_txt_filename_out.SetValue(os.path.join(path_proj_name,self.OUT_FNAME))
             self.mc_txt_log.AppendText('Opened project: '+path_proj_name+'\n')
         dlg.Destroy()
