@@ -25,7 +25,7 @@ def getLatLon(row,col,lat0,lon0,dlat,dlon):
     lon = col*dlon + lon0
     return lat,lon
 
-def GetValidValue(M, i, j):
+def GetValidValue(M, i, j, Nx, Ny):
     '''
     Input
         :M: Numpy masked array
@@ -34,6 +34,10 @@ def GetValidValue(M, i, j):
         if valid, the value M[i][j], else the average of neighbors with
         a concatenated # simbol to the computed value
     '''
+    if (i>=Nx or i<0) or (j>=Ny or j<0):
+        print Nx, i
+        print Ny, j
+        return '# Out of bounds #'
     if M.mask[i][j]:
         p = n = 0.0;
         for r in range(3):
@@ -73,5 +77,5 @@ def SaveMasiveValues(outfilename,fileLst, pos, band=1):
             csvrow = [fn]
             for po in pos.keys():
                 row,col = getRowCol(pos[po][0],pos[po][1],lat0,lon0,dlat,dlon)
-                csvrow += [GetValidValue(etrMap,row,col)]
+                csvrow += [GetValidValue(etrMap,row,col,Nx,Ny)]
             spamwriter.writerow(csvrow)
