@@ -162,7 +162,7 @@ class MainFrameBase ( wx.Frame ):
 		self.Layout()
 		self.m_menubar1 = wx.MenuBar( 0 )
 		self.m_menu_file = wx.Menu()
-		self.m_menuItem1 = wx.MenuItem( self.m_menu_file, wx.ID_ANY, u"MyMenuItem", wx.EmptyString, wx.ITEM_NORMAL )
+		self.m_menuItem1 = wx.MenuItem( self.m_menu_file, wx.ID_ANY, u"Quit", wx.EmptyString, wx.ITEM_NORMAL )
 		self.m_menu_file.AppendItem( self.m_menuItem1 )
 		
 		self.m_menubar1.Append( self.m_menu_file, u"File" )
@@ -190,6 +190,7 @@ class MainFrameBase ( wx.Frame ):
 		self.m_cmb_band.Bind( wx.EVT_TEXT, self.onBandChanged )
 		self.m_rBox_extract_input_type.Bind( wx.EVT_RADIOBOX, self.onExtractInputTypeClick )
 		self.m_btn_extract.Bind( wx.EVT_BUTTON, self.onExtractClicked )
+		self.Bind( wx.EVT_MENU, self.onQuitSelected, id = self.m_menuItem1.GetId() )
 		self.Bind( wx.EVT_MENU, self.onMassiveCalcsSelected, id = self.m_mitem_massive_calcs.GetId() )
 		self.Bind( wx.EVT_MENU, self.onAboutSelected, id = self.m_mitem_about.GetId() )
 	
@@ -216,6 +217,9 @@ class MainFrameBase ( wx.Frame ):
 	def onExtractClicked( self, event ):
 		event.Skip()
 	
+	def onQuitSelected( self, event ):
+		event.Skip()
+	
 	def onMassiveCalcsSelected( self, event ):
 		event.Skip()
 	
@@ -232,6 +236,8 @@ class MainFrameBase ( wx.Frame ):
 		event.Skip()
 	def onZoom( self, event ):
 		event.Skip()
+	
+
 ###########################################################################
 ## Class MasiveCalcsFrame
 ###########################################################################
