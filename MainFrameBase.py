@@ -181,7 +181,7 @@ class MainFrameBase( gui.MainFrameBase ):
         self.m_canvas.draw()
 
     def onAboutSelected( self, event ):
-        #self.About = AboutFrame(None)
+        #self.About = AboutDialog(None)
         #self.About.Show()
         pass
 
