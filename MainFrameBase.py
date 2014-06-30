@@ -191,3 +191,12 @@ class MainFrameBase( gui.MainFrameBase ):
     def onMassiveCalcsSelected( self, event ):
         self.MassiveCalcs = MasiveCalcsFrame(None)
         self.MassiveCalcs.Show()
+
+    def onQuitSelected( self, event ):
+        dlg = wx.MessageDialog(self,
+            "Do you really want to close this application?",
+            "Confirm Exit", wx.OK|wx.CANCEL|wx.ICON_QUESTION)
+        result = dlg.ShowModal()
+        dlg.Destroy()
+        if result == wx.ID_OK:
+            self.Destroy()
