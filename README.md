@@ -36,6 +36,7 @@ From the main viewer, titi, you can invoke titi-k using the graphical user inter
 ### To do List
 * About the code/GUI design
     * GUI re-design: to use notebook/tabs			[OK]
+    * Zoom to be fixed
 
 * About functionality
     * Number of bands automatically detected		[OK]
