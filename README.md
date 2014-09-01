@@ -17,22 +17,6 @@ titi has two different flavours, using QT and Wx libraries. You can use titi ope
 You can run from the command line (or clicking over it):
 
     python titi.py
-    
-### Dependencies
-* Commons
- * python-numpy
- * python-matplotlib
- * python-gdal
-
-* titiQt
- * python-numpy
- * python-matplotlib
- * python-gdal
-
-* titiWx
- * python-numpy
- * python-matplotlib
- * python-gdal
 
 ### To do List
 *
