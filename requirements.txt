@@ -1,4 +1,3 @@
 python-numpy
 python-matplotlib
 python-gdal
-python-wxgtk2.8
