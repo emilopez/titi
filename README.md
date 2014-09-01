@@ -14,6 +14,7 @@ titi is a satellite and radar image viewer. It can show, for example, a digital 
 
 <p align="center">
   <img width=300 src="http://yosobreip.com.ar/wp-content/uploads/2014/09/titiQtColVaporSac-D.png"/>
+  <img width=300 src="http://yosobreip.com.ar/wp-content/uploads/2014/09/titiQtTempSac-D.png"/>
 </p>
 
 ### Features
