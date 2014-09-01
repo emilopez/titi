@@ -3,10 +3,6 @@ titi is a satellite image viewer
 
 titi is a satellite and radar image viewer. It can show, for example, a digital elevation model (DEM) from ASTER Global DEM V2 from NASA; the surface salinity, wind speed, columar water vapor from SAC-D/Aquarius; evapotranspiration maps from INTA Argentina for different agrometeorological purposes. 
 
-.. image:: http://yosobreip.com.ar/wp-content/uploads/2014/09/TitiWxAsterGDEMv21.png
-    :width: 400
-    :align: center
-
 <p align="center">
   <img width=300 src="http://yosobreip.com.ar/wp-content/uploads/2014/09/TitiWxAsterGDEMv21.png"/>
   <img width=300 src="http://yosobreip.com.ar/wp-content/uploads/2014/09/TitiWxETRmapINTA.png"/>
