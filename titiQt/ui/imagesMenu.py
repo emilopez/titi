@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'imagesMenu.ui'
 #
-# Created: Tue Jul  1 17:55:31 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created: Mon Sep  1 16:42:09 2014
+#      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -91,8 +91,8 @@ class Ui_imagesMenu(object):
         self.pushButton_2.setText(_translate("Form", "Extract", None))
         self.label.setText(_translate("Form", "Colormap", None))
         self.label_2.setText(_translate("Form", "Band", None))
-        self.comboBox_2.setItemText(0, _translate("Form", "None", None))
-        self.comboBox.setItemText(0, _translate("Form", "None", None))
+        self.comboBox_2.setItemText(0, _translate("Form", "1", None))
+        self.comboBox.setItemText(0, _translate("Form", "gist_earth", None))
         self.label_3.setText(_translate("Form", "Input type", None))
         self.label_4.setText(_translate("Form", "Latitude", None))
         self.label_5.setText(_translate("Form", "Longitude", None))

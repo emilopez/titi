@@ -79,7 +79,7 @@
    </property>
    <item>
     <property name="text">
-     <string>None</string>
+     <string>1</string>
     </property>
    </item>
   </widget>
@@ -94,7 +94,7 @@
    </property>
    <item>
     <property name="text">
-     <string>None</string>
+     <string>gist_earth</string>
     </property>
    </item>
   </widget>

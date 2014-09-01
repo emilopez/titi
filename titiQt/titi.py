@@ -291,7 +291,7 @@ class principal (QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbits
         self.imagesMenu.comboBox.clear()
         if (self.filename != ""):
             lista= QtCore.QStringList
-            lista = (u"None", u"gist_earth", u"gist_gray",u"gist_heat", u"gist_ncar",
+            lista = (u"gist_earth", u"gist_gray",u"gist_heat", u"gist_ncar",
             u"gist_rainbow", u"gist_stern", u"gist_yarg", u"autumn", u"bone",
             u"cool", u"copper", u"flag", u"gray", u"hot", u"hsv", u"jet", u"pink",
             u"prism", u"spring", u"summer", u"winter", u"spectral")
@@ -302,14 +302,10 @@ class principal (QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbits
         colorMap = self.imagesMenu.comboBox.currentText()
         # se borra el combobox de las bandas
         self.imagesMenu.comboBox_2.clear()
-        # si se selecciono anteriormente None
-        if (colorMap == "None"):
-            self.imagesMenu.comboBox_2.addItem("None")
-            #self.clear()
-        else:
-            # se obtiene la cantidad de bandas de la imagen seleccionada
-            bands = [str(b) for b in range(1, self.NBand + 1)]
-            self.imagesMenu.comboBox_2.addItems(bands)
+
+        # se obtiene la cantidad de bandas de la imagen seleccionada
+        bands = [str(b) for b in range(1, self.NBand + 1)]
+        self.imagesMenu.comboBox_2.addItems(bands)
         return
 
     def putImage(self):
@@ -317,6 +313,7 @@ class principal (QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbits
         # se obtiene el colormap seleccionado
         colorMap = str(self.imagesMenu.comboBox.currentText())
         # se obtiene la banda seleccionada
+        print self.imagesMenu.comboBox_2.currentText()
         band = int(self.imagesMenu.comboBox_2.currentText())
         #print type(colorMap)
         #print type(band)
