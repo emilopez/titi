@@ -12,21 +12,12 @@ titi is a satelitall image viewer
 
 ### How to use titi
 
-titi has two files to be used:
+titi has two different flavours, using QT and Wx libraries. You can use titi opening the corresponding folder and running titi.py 
 
-* titi : the main satelital image viewer
-* tit-k: a useful tool to make massive calcs over a set of images
-
-You can run anyone from the command line:
+You can run from the command line (or clicking over it):
 
     python titi.py
-
-or
-
-    python titi-k.py
-
-From the main viewer, titi, you can invoke titi-k using the graphical user interface over the menues.
-
+    
 ### Dependencies
 * python-numpy
 * python-matplotlib
@@ -34,14 +25,11 @@ From the main viewer, titi, you can invoke titi-k using the graphical user inter
 * python-wxgtk2.8
 
 ### To do List
-* About the code/GUI design
-    * GUI re-design: to use notebook/tabs			[OK]
-    * Zoom to be fixed
-    * Prueba desde titi original
+*
+*
 
-* About functionality
-    * Number of bands automatically detected		[OK]
-    * Math operation between bands (NDVI, NWDI, etc..)	[..]
-    * Massive extraction: extract values (from a given lat & long) from selected images... [..]
+### Changelog
+*
+*
 
 
