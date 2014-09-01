@@ -5,7 +5,7 @@ titi is a satellite and radar image viewer. It can show, for example, a digital 
 
 ![ScreenShot](http://yosobreip.com.ar/wp-content/uploads/2014/09/TitiWxAsterGDEMv21.png)
 ![ScreenShot](http://yosobreip.com.ar/wp-content/uploads/2014/09/TitiWxETRmapINTA.png)
-![ScreenShot](http://yosobreip.com.ar/wp-content/uploads/2014/09/TitiQtColVaporSac-D.png)
+![ScreenShot](http://yosobreip.com.ar/wp-content/uploads/2014/09/titiQtColVaporSac-D.png)
 
 
 
