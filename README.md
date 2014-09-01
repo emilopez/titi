@@ -19,10 +19,20 @@ You can run from the command line (or clicking over it):
     python titi.py
     
 ### Dependencies
-* python-numpy
-* python-matplotlib
-* python-gdal
-* python-wxgtk2.8
+* Commons
+ * python-numpy
+ * python-matplotlib
+ * python-gdal
+
+* titiQt
+ * python-numpy
+ * python-matplotlib
+ * python-gdal
+
+* titiWx
+ * python-numpy
+ * python-matplotlib
+ * python-gdal
 
 ### To do List
 *
