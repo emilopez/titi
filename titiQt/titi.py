@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import sys
-import StringIO
 from PyQt4 import QtCore, QtGui
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
