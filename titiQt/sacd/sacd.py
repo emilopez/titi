@@ -132,6 +132,9 @@ def activateButtonGraph(self):
         self.orbitsMenu.pushButton_2.setEnabled(True)
 
 def graph(self):
+    self.ventana.textEdit.append("Iniciando...")
+    # se actualiza la interfaz para mostrar las acciones en el textEdit
+    QtGui.QApplication.processEvents()
     # se borran las imagenes previas
     self.clear1()
     # se obtienen los valores seleccionados en OrbitsMenu
@@ -158,6 +161,8 @@ def graph(self):
     QtGui.QApplication.processEvents()
     # se obtiene la imagen
     visualization.graphSACDProduct(plt,self.figure, pathHDF, level, nameProduct, nameCB, mapa, self.ventana.textEdit)
+    # para hacer mas pequenios los margenes
+    self.figure.tight_layout()
     # se actualiza la interfaz para mostrar las acciones en el textEdit
     QtGui.QApplication.processEvents()
     # se elimina la carpeta temporal de los archivos descomprimidos

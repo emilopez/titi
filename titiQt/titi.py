@@ -5,7 +5,8 @@ from PyQt4 import QtCore, QtGui
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as NavigationToolbar
-
+import matplotlib.cm as cm
+from generic import module
 
 
 
@@ -120,6 +121,10 @@ class principal (QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbits
     ## this functions are in /massiveCalcs/massiveCalcs.py
     def putMC(self):
         massiveCalcs.putMC(self,mcMenu)
+        return
+
+    def putDirectoriesTree(self):
+        massiveCalcs.putDirectoriesTree(self)
         return
 
     ###------------------------Fin massiveCalc---------------------------------

@@ -80,15 +80,20 @@ def putImage(self):
     if (colorMap == " "):
         colorMap = "gist_earth"
     # se obtiene la banda seleccionada
-    band = int(self.imagesMenu.comboBox_2.currentText())
-    if (band == " "):
+    if (self.imagesMenu.comboBox_2.currentText() == ''):
         band = 1
+    else:
+        band = int(self.imagesMenu.comboBox_2.currentText())
     self.data = rasterIO.readrasterband(self.file_pointer, band)
     self.data = self.data.astype(np.float32)
     self.ax = self.figure.add_subplot(111)
     colorValue = eval("cm." + colorMap)
     image = self.ax.imshow(self.data, cmap=colorValue)
-    self.figure.colorbar(image)
+    # se inserta la barra de colores
+    # el segundo parametro es el tamano de la barra de colores
+    self.figure.colorbar(image, pad = 0.01)
+    # para hacer mas pequenios los margenes
+    self.figure.tight_layout()
     # se actualiza la interfaz para mostrar las acciones en el textEdit
     QtGui.QApplication.processEvents()
     # se grafica

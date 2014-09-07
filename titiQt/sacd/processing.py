@@ -122,5 +122,6 @@ def getData (level, nameFile,nameProduct):
         fileLongitude = "HDF5:" + nameFile + "://Geolocation_Data/ka_p45_longitude"
         longitude = gdal.Open(fileLongitude)
         lon = longitude.ReadAsArray()
+    gdal_dataset = None
     return (product, lon, lat)
 
