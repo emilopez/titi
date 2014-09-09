@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'imagesMenu.ui'
 #
-# Created: Mon Sep  1 16:42:09 2014
-#      by: PyQt4 UI code generator 4.11.1
+# Created: Wed Sep  3 17:09:41 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -47,6 +47,27 @@ class Ui_imagesMenu(object):
         self.comboBox = QtGui.QComboBox(Form)
         self.comboBox.setGeometry(QtCore.QRect(6, 60, 141, 25))
         self.comboBox.setObjectName(_fromUtf8("comboBox"))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
         self.comboBox.addItem(_fromUtf8(""))
         self.lineEdit = QtGui.QLineEdit(Form)
         self.lineEdit.setGeometry(QtCore.QRect(90, 212, 61, 25))
@@ -93,6 +114,27 @@ class Ui_imagesMenu(object):
         self.label_2.setText(_translate("Form", "Band", None))
         self.comboBox_2.setItemText(0, _translate("Form", "1", None))
         self.comboBox.setItemText(0, _translate("Form", "gist_earth", None))
+        self.comboBox.setItemText(1, _translate("Form", "gist_gray", None))
+        self.comboBox.setItemText(2, _translate("Form", "gist_heat", None))
+        self.comboBox.setItemText(3, _translate("Form", "gist_ncar", None))
+        self.comboBox.setItemText(4, _translate("Form", "gist_rainbow ", None))
+        self.comboBox.setItemText(5, _translate("Form", "gist_stern", None))
+        self.comboBox.setItemText(6, _translate("Form", "gist_yarg ", None))
+        self.comboBox.setItemText(7, _translate("Form", "autumn ", None))
+        self.comboBox.setItemText(8, _translate("Form", "bone ", None))
+        self.comboBox.setItemText(9, _translate("Form", "cool ", None))
+        self.comboBox.setItemText(10, _translate("Form", "copper ", None))
+        self.comboBox.setItemText(11, _translate("Form", "flag ", None))
+        self.comboBox.setItemText(12, _translate("Form", "gray ", None))
+        self.comboBox.setItemText(13, _translate("Form", "hot", None))
+        self.comboBox.setItemText(14, _translate("Form", "hsv ", None))
+        self.comboBox.setItemText(15, _translate("Form", "jet", None))
+        self.comboBox.setItemText(16, _translate("Form", "pink", None))
+        self.comboBox.setItemText(17, _translate("Form", "prism", None))
+        self.comboBox.setItemText(18, _translate("Form", "spring", None))
+        self.comboBox.setItemText(19, _translate("Form", "summer", None))
+        self.comboBox.setItemText(20, _translate("Form", "winter", None))
+        self.comboBox.setItemText(21, _translate("Form", "spectral", None))
         self.label_3.setText(_translate("Form", "Input type", None))
         self.label_4.setText(_translate("Form", "Latitude", None))
         self.label_5.setText(_translate("Form", "Longitude", None))

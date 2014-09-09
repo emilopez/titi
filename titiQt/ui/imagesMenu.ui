@@ -97,6 +97,111 @@
      <string>gist_earth</string>
     </property>
    </item>
+   <item>
+    <property name="text">
+     <string>gist_gray</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>gist_heat</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>gist_ncar</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>gist_rainbow </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>gist_stern</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>gist_yarg </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>autumn </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>bone </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>cool </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>copper </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>flag </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>gray </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>hot</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>hsv </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>jet</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>pink</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>prism</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>spring</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>summer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>winter</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>spectral</string>
+    </property>
+   </item>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">

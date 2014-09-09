@@ -63,11 +63,11 @@ def graphSACDProduct(plt, fig, path, level, nameProduct, nameCB,mapa,textEdit):
         # se convierten los arreglos de lat y lon segun el mapa elegido
         x, y = mapa(lon, lat)
         # se escriben sobre el mapa
-        out = plt.scatter(x, y, 0.5, product, cmap=cbType, marker='+')
+        out = plt.scatter(x, y, 0.3, product, cmap=cbType, marker='+')
     # endfor
     # se agrega el titulo, la escala de colores y la etiqueta al grafico
     plt.title(nameProduct)
-    cbar = fig.colorbar(out,shrink=0.7)
+    cbar = fig.colorbar(out,shrink = 0.95, pad = 0.01)
     if (level == "L1B"):
         cbar.set_label("[K]")
     if (level == "L2"):
