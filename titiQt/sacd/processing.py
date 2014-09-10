@@ -1,3 +1,4 @@
+# -*- encoding: utf8 -*-
 from osgeo import gdal
 import numpy as np
 import os

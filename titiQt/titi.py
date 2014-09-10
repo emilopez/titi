@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- encoding: utf8 -*-
 import sys
 import titi_app
 

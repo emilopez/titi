@@ -1,3 +1,4 @@
+# -*- encoding: utf8 -*-
 import os
 
 def isExtensionSupported(filename):

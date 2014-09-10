@@ -1,3 +1,4 @@
+# -*- encoding: utf8 -*-
 def getRowCol(lat,lon,lat0,lon0,dlat,dlon):
     '''Devuelve la fila y columna correspondiente a una lat y long, donde:
         lat,lon: es latitud y longitud del punto a extraer
