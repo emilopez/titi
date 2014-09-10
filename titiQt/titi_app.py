@@ -9,7 +9,6 @@ import matplotlib.cm as cm
 import numpy as np
 
 from ui import mainMenu, orbitsMenu, imagesMenu, mcMenu
-from massiveCalcs import massiveCalcs
 from generic import module, rasterIO
 from sacd import processing, visualization
 
@@ -38,13 +37,13 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         #self.connect(self.ventana.action_Abrir,QtCore.SIGNAL("triggered()"),self.openFile)
         #self.connect(self.ventana.action_guardar,QtCore.SIGNAL("triggered()"),self.guardarPlot)
         self.connect(self.ventana.action_About,QtCore.SIGNAL("triggered()"),self.about)
-        self.connect(self.ventana.actionMassiveCalc,QtCore.SIGNAL("triggered()"),self.putMC)
+        self.connect(self.ventana.actionMassiveCalc,QtCore.SIGNAL("triggered()"),self.showMC)
         # acciones botones
-        self.connect(self.ventana.radioButton_1,QtCore.SIGNAL("clicked()"),self.orbitsMenu)
-        self.connect(self.ventana.radioButton_2,QtCore.SIGNAL("clicked()"),self.imagesMenu)
+        self.connect(self.ventana.radioButton_1,QtCore.SIGNAL("clicked()"),self.showOrbitsMenu)
+        self.connect(self.ventana.radioButton_2,QtCore.SIGNAL("clicked()"),self.showImagesMenu)
 
     ###----------------------------Orbits Menu---------------------------------
-    def orbitsMenu(self):
+    def showOrbitsMenu(self):
         # se borran las imagenes previas, textEdit y otros
         self.clear()
         # se elimina elementos creados previos si es que existen
@@ -231,7 +230,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
     ###-------------------------Fin Orbits Menu--------------------------------
 
     ###----------------------------Images Menu---------------------------------
-    def imagesMenu(self):
+    def showImagesMenu(self):
         # se borran las imagenes previas, textEdit y otros
         self.clear()
         ## se elimina elementos creados previos si es que existen
@@ -376,15 +375,38 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
     ###------------------------Fin Images Menu--------------------------
 
     ###------------------------MassiveCalc--------------------------
-    ## this functions are in /massiveCalcs/massiveCalcs.py
-    def putMC(self):
-        massiveCalcs.putMC(self,mcMenu)
+    def showMC(self):
+        # se crea la ventana calculo masivos
+        window = QtGui.QDialog()
+        width = 900
+        height = 600
+        self.ventanaMC = mcMenu.Ui_Dialog()
+        self.ventanaMC.setupUi(window)
+        window.setFixedSize(width, height)
+        self.ventanaMC.pushButton.clicked.connect(self.about)
+        self.ventanaMC.pushButton_2.clicked.connect(self.about)
+        self.ventanaMC.pushButton_3.clicked.connect(self.about)
+        self.showTreeDir()
+        window.exec_()
         return
 
-    def putDirectoriesTree(self):
-        massiveCalcs.putDirectoriesTree(self)
-        return
+    def showTreeDir(self):
+        self.model = QtGui.QDirModel()
+        self.tree = QtGui.QTreeView(self)
+        self.tree.setModel(self.model)
+        self.model.setFilter(QtCore.QDir.Dirs|QtCore.QDir.NoDotAndDotDot)
+        self.tree.setSortingEnabled(True)
+        self.tree.setRootIndex(self.model.index("/home/"))
 
+        self.tree.hideColumn(1)
+        self.tree.hideColumn(2)
+        self.tree.hideColumn(3)
+        self.tree.setWindowTitle("Dir View")
+        #self.tree.resize(400, 480)
+        #self.tree.setColumnWidth(0,150)
+        self.ventanaMC.horizontalLayout.addWidget(self.tree)
+        self.tree.show()
+        return
     ###------------------------Fin massiveCalc---------------------------------
 
     ###------------------------Funciones generales-----------------------------
@@ -401,7 +423,8 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
                 #self.ventana.verticalLayout_3.itemAt(cnt).layout.delete()
 
     def mouse_move(self, event):
-        if not event.inaxes: return
+        if not event.inaxes:
+            return
         if (self.ventana.radioButton_2.isChecked()):
             # solo si se encuentra en imagesMenu
             #if (self.ventana.verticalLayout_3.count() == 0):
