@@ -10,10 +10,12 @@ import matplotlib.cm as cm
 import numpy as np
 
 from ui import mainMenu, orbitsMenu, imagesMenu, mcMenu
+import titi_calcs
 from generic import module, rasterIO
 from sacd import processing, visualization
 
-class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu, mcMenu.Ui_Dialog):
+
+class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu):
     def __init__(self,parent = None):
         QtGui.QMainWindow.__init__(self,parent)
         # se crea la ventana principal
@@ -377,37 +379,14 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
 
     ###------------------------MassiveCalc--------------------------
     def showMC(self):
-        # se crea la ventana calculo masivos
-        window = QtGui.QDialog()
-        width = 900
-        height = 600
-        self.ventanaMC = mcMenu.Ui_Dialog()
-        self.ventanaMC.setupUi(window)
-        window.setFixedSize(width, height)
-        self.ventanaMC.pushButton.clicked.connect(self.about)
-        self.ventanaMC.pushButton_2.clicked.connect(self.about)
-        self.ventanaMC.pushButton_3.clicked.connect(self.about)
-        self.showTreeDir()
-        window.exec_()
+        # se invoca la ventana calculo masivos
+        mc = QtGui.QFrame()
+        ui = Ui_Frame()
+        ui.setupUi(Frame)
+        Frame.show()
+
         return
 
-    def showTreeDir(self):
-        self.model = QtGui.QDirModel()
-        self.tree = QtGui.QTreeView(self)
-        self.tree.setModel(self.model)
-        self.model.setFilter(QtCore.QDir.Dirs|QtCore.QDir.NoDotAndDotDot)
-        self.tree.setSortingEnabled(True)
-        self.tree.setRootIndex(self.model.index("/home/"))
-
-        self.tree.hideColumn(1)
-        self.tree.hideColumn(2)
-        self.tree.hideColumn(3)
-        self.tree.setWindowTitle("Dir View")
-        #self.tree.resize(400, 480)
-        #self.tree.setColumnWidth(0,150)
-        self.ventanaMC.horizontalLayout.addWidget(self.tree)
-        self.tree.show()
-        return
     ###------------------------Fin massiveCalc---------------------------------
 
     ###------------------------Funciones generales-----------------------------

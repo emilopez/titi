@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'mcMenu.ui'
 #
-# Created: Sun Sep  7 19:09:39 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created: Wed Sep 10 15:14:43 2014
+#      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -23,12 +23,14 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(904, 599)
-        self.tabWidget = QtGui.QTabWidget(Dialog)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 900, 600))
+class Ui_Frame(object):
+    def setupUi(self, Frame):
+        Frame.setObjectName(_fromUtf8("Frame"))
+        Frame.resize(919, 622)
+        Frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        Frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.tabWidget = QtGui.QTabWidget(Frame)
+        self.tabWidget.setGeometry(QtCore.QRect(10, 10, 900, 600))
         self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
         self.tab = QtGui.QWidget()
         self.tab.setObjectName(_fromUtf8("tab"))
@@ -95,35 +97,32 @@ class Ui_Dialog(object):
         self.label_7 = QtGui.QLabel(self.tab)
         self.label_7.setGeometry(QtCore.QRect(680, 10, 58, 15))
         self.label_7.setObjectName(_fromUtf8("label_7"))
-        self.horizontalLayoutWidget = QtGui.QWidget(self.tab)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 35, 211, 281))
-        self.horizontalLayoutWidget.setObjectName(_fromUtf8("horizontalLayoutWidget"))
-        self.horizontalLayout = QtGui.QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout.setMargin(0)
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
+        self.treeView = QtGui.QTreeView(self.tab)
+        self.treeView.setGeometry(QtCore.QRect(12, 35, 209, 279))
+        self.treeView.setObjectName(_fromUtf8("treeView"))
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
         self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
 
-        self.retranslateUi(Dialog)
+        self.retranslateUi(Frame)
         self.tabWidget.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Frame)
 
-    def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "MassiveCalc", None))
-        self.label.setText(_translate("Dialog", "Filename Output", None))
-        self.pushButton.setText(_translate("Dialog", "Start Extraction", None))
-        self.radioButton.setText(_translate("Dialog", "Lat/Lon", None))
-        self.radioButton_2.setText(_translate("Dialog", "Row/Col", None))
-        self.label_2.setText(_translate("Dialog", "Label", None))
-        self.label_3.setText(_translate("Dialog", "Latitude", None))
-        self.label_4.setText(_translate("Dialog", "Longitude", None))
-        self.pushButton_2.setText(_translate("Dialog", "Add Point", None))
-        self.pushButton_3.setText(_translate("Dialog", "Save File", None))
-        self.label_5.setText(_translate("Dialog", "Here 1", None))
-        self.label_6.setText(_translate("Dialog", "here 2", None))
-        self.label_7.setText(_translate("Dialog", "here 3", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "Extration", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "Band Calcs", None))
+    def retranslateUi(self, Frame):
+        Frame.setWindowTitle(_translate("Frame", "Frame", None))
+        self.label.setText(_translate("Frame", "Filename Output", None))
+        self.pushButton.setText(_translate("Frame", "Start Extraction", None))
+        self.radioButton.setText(_translate("Frame", "Lat/Lon", None))
+        self.radioButton_2.setText(_translate("Frame", "Row/Col", None))
+        self.label_2.setText(_translate("Frame", "Label", None))
+        self.label_3.setText(_translate("Frame", "Latitude", None))
+        self.label_4.setText(_translate("Frame", "Longitude", None))
+        self.pushButton_2.setText(_translate("Frame", "Add Point", None))
+        self.pushButton_3.setText(_translate("Frame", "Save File", None))
+        self.label_5.setText(_translate("Frame", "Here 1", None))
+        self.label_6.setText(_translate("Frame", "here 2", None))
+        self.label_7.setText(_translate("Frame", "here 3", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Frame", "Extration", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Frame", "Band Calcs", None))
 
