@@ -5,18 +5,20 @@ import os
 import tarfile
 import shutil
 
-def extractFiles(path,textEdit):
+def extractFiles(listFiles,textEdit):
 #"""
  #funcion que recibe:
-     # path de la carpeta que contiene los archivos tar.gz
- #crea una carpeta dentro de la ruta recibida denominada tmpExtract que contiene
- #los archivos descomprimidos (HDF)
- # Retorna: el nuevo path
+     # la lista de archivos tar.gz
+     # crea una carpeta tmpExtract dentro de la ruta donde se encuentran los archivos
+     # y en ella se descomprimen obteniendo los .HDF
+ # Retorna: el path de tmpExtract
 #"""
     textEdit.append("Realizando extraccion...")
+    # se obtiene el path donde se encuentran los archivos de la lista
+    path =  os.path.dirname(str(listFiles[0]))
     # se define el nombre del directorio donde descomprimir temporalmente los archivos
     dir = path + "/tmpExtract/"
-    # se crea el directorio temporal
+    ## se crea el directorio temporal
     try:
         os.stat(dir)
     except:
@@ -25,14 +27,12 @@ def extractFiles(path,textEdit):
     cwd = os.getcwd()
     # se establece el directorio para realizar la descompresion
     os.chdir(path + "/tmpExtract")
-    # se crea una lista de los archivos dentro de la carpeta
-    listFile = os.listdir(path)
     # se obtiene la cantidad de archivos
-    numFiles = len(listFile)
+    numFiles = listFiles.count()
     # se recorren todos los archivos dentro del directorio
     for i in range(0, numFiles):
         # se define el path del archivo
-        file = path + "/" + listFile[i]
+        file = str(listFiles[i])
         # solo los .tar.gz
         if str(file).find(".tar.gz") != -1:
             # se descomprimen los archivos
