@@ -74,22 +74,25 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.clear()
         # se desactiva el boton guardar
         self.orbitsMenu.pushButton_3.setEnabled(False)
-        self.folder = QtGui.QFileDialog.getExistingDirectory(self, "Select Directory")
-        if (self.folder != ""):
-            self.ventana.textEdit.setText("#### Opened Folder #### \n"+self.folder + "\n")
+        self.listFiles = QtGui.QFileDialog.getOpenFileNames(self, "Select file/s tar.gz")
+        ## self.listFiles es una QStringList
+        print self.listFiles.isEmpty()
+        if (self.listFiles.isEmpty() == False):
+            #self.ventana.textEdit.setText("#### Opened Folder #### \n"+self.folder + "\n")
             ### se valida la existencia de archivos tar.gz
             # se listan los archivos del directorio
-            listFile = os.listdir(self.folder)
-            numFiles = len(listFile)
+            #listFile = os.listdir(self.folder)
+            numFiles = self.listFiles.count()
+            print numFiles
             flag = 0
             for i in range(0,numFiles):
-                if str(listFile[i]).find(".tar.gz") != -1:
+                if str(self.listFiles[i]).find(".tar.gz") != -1:
                     flag = 1
             if (flag != 1):
                 reply = QtGui.QMessageBox.critical(self, 'Message',
-                "Folder has to have files tar.gz from SAC-D/Aquarius mission")
-                self.folder = QtGui.QFileDialog.getExistingDirectory(self, "Select Directory")
-            # se cargan los niveles
+                "File/s has/have to be files tar.gz from SAC-D/Aquarius mission")
+                self.listFiles = QtGui.QFileDialog.getOpenFileNames(self, "Select file/s tar.gz")
+            ## se cargan los niveles
             self.putLevels()
         self.activateButtonGraph()
 
@@ -170,8 +173,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # si se selecciono None
         if (text == "None"):
             self.orbitsMenu.pushButton_2.setEnabled(False)
-        folder = self.folder # selected folder
-        if ((folder != "") and (text != "None")):
+        if ((self.listFiles.isEmpty() == False) and (text != "None")):
             self.orbitsMenu.pushButton_2.setEnabled(True)
 
     def graph(self):
@@ -181,7 +183,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # se borran las imagenes previas
         self.clear1()
         # se obtienen los valores seleccionados en OrbitsMenu
-        path = str(self.folder)
+        listFiles = self.listFiles
         level = str(self.orbitsMenu.comboBox.currentText())
         nameProduct = str(self.orbitsMenu.comboBox_2.currentText())
         typeMap = str(self.orbitsMenu.comboBox_3.currentText())
@@ -191,8 +193,8 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         #print "nameProduct: " + nameProduct
         #print "nameCB: " + nameCB
         #print "typeMap: " + typeMap
-        # se extraen los archivos en un archivo temporal
-        pathHDF = processing.extractFiles(path, self.ventana.textEdit)
+        # se extraen los tar.gz en un archivo temporal
+        pathHDF = processing.extractFiles(listFiles, self.ventana.textEdit)
         # se actualiza la interfaz para mostrar las acciones en el textEdit
         QtGui.QApplication.processEvents()
         #### muy importante ####

@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Open Folder</string>
+    <string>Open File/s</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'orbitsMenu.ui'
 #
-# Created: Mon Jun  9 19:20:32 2014
+# Created: Sat Sep 13 20:18:08 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -74,7 +74,7 @@ class Ui_orbitsMenu(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Form", None))
-        self.pushButton.setText(_translate("Form", "Open Folder", None))
+        self.pushButton.setText(_translate("Form", "Open File/s", None))
         self.label.setText(_translate("Form", "Processing level", None))
         self.comboBox.setItemText(0, _translate("Form", "None", None))
         self.label_2.setText(_translate("Form", "Band/Product", None))
