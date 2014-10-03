@@ -15,7 +15,7 @@ from generic import module, rasterIO
 from sacd import processing, visualization
 
 
-class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu):
+class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu, mcMenu.Ui_Frame):
     def __init__(self,parent = None):
         QtGui.QMainWindow.__init__(self,parent)
         # se crea la ventana principal
@@ -382,10 +382,12 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
     ###------------------------MassiveCalc--------------------------
     def showMC(self):
         # se invoca la ventana calculo masivos
-        mc = QtGui.QFrame()
-        ui = Ui_Frame()
-        ui.setupUi(Frame)
-        Frame.show()
+        # primero se crea el objeto frame, luego se instancia o crea la interfaz
+        # y esa interfaz se aplica/asigna al frame
+        self.frame = QtGui.QFrame()
+        self.frame.ui = mcMenu.Ui_Frame()
+        self.frame.ui.setupUi(self.frame)
+        self.frame.show()
 
         return
 
