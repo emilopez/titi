@@ -383,9 +383,9 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
     ###------------------------MassiveCalc--------------------------
     def showMC(self):
         # se invoca la ventana calculo masivos
-        # primero se crea el objeto frame, luego se instancia o crea la interfaz
-        # y esa interfaz se aplica/asigna al frame
+        # primero se crea el objeto frame
         self.frame = QtGui.QFrame()
+        # se instancia la clase de la ventana calculos masivos
         titi_calcs_app.CalcsApp(self.frame)
         # se le fija el tamaño a la ventana y se quita el resize
         width = 900
