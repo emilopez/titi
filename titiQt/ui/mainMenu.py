@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainMenu.ui'
 #
-# Created: Fri Aug 22 14:29:22 2014
+# Created: Sun Oct  5 16:39:38 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -38,6 +38,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setMargin(0)
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.radioButton_1 = QtGui.QRadioButton(self.horizontalWidget_2)
+        self.radioButton_1.setChecked(True)
         self.radioButton_1.setObjectName(_fromUtf8("radioButton_1"))
         self.horizontalLayout_2.addWidget(self.radioButton_1)
         self.radioButton_2 = QtGui.QRadioButton(self.horizontalWidget_2)
@@ -112,7 +113,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "saTellITal Image viewer: Titi", None))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Titi", None))
         self.radioButton_1.setText(_translate("MainWindow", "Orbits", None))
         self.radioButton_2.setText(_translate("MainWindow", "Images", None))
         self.menu_File.setTitle(_translate("MainWindow", "&File", None))

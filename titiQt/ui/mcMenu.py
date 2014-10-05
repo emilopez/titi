@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'mcMenu.ui'
 #
-# Created: Wed Sep 10 15:14:43 2014
-#      by: PyQt4 UI code generator 4.11.1
+# Created: Sun Oct  5 16:33:54 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -110,7 +110,7 @@ class Ui_Frame(object):
         QtCore.QMetaObject.connectSlotsByName(Frame)
 
     def retranslateUi(self, Frame):
-        Frame.setWindowTitle(_translate("Frame", "Frame", None))
+        Frame.setWindowTitle(_translate("Frame", "Titi", None))
         self.label.setText(_translate("Frame", "Filename Output", None))
         self.pushButton.setText(_translate("Frame", "Start Extraction", None))
         self.radioButton.setText(_translate("Frame", "Lat/Lon", None))
