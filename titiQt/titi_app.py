@@ -11,6 +11,7 @@ import numpy as np
 
 from ui import mainMenu, orbitsMenu, imagesMenu, mcMenu
 import titi_calcs
+import titi_calcs_app
 from generic import module, rasterIO
 from sacd import processing, visualization
 
@@ -385,10 +386,12 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # primero se crea el objeto frame, luego se instancia o crea la interfaz
         # y esa interfaz se aplica/asigna al frame
         self.frame = QtGui.QFrame()
-        self.frame.ui = mcMenu.Ui_Frame()
-        self.frame.ui.setupUi(self.frame)
+        titi_calcs_app.CalcsApp(self.frame)
+        # se le fija el tamaño a la ventana y se quita el resize
+        width = 900
+        height = 600
+        self.frame.setFixedSize(width, height)
         self.frame.show()
-
         return
 
     ###------------------------Fin massiveCalc---------------------------------

@@ -17,13 +17,13 @@ class CalcsApp(QtGui.QFrame, mcMenu.Ui_Frame):
     def __init__(self,parent = None):
         QtGui.QFrame.__init__(self,parent)
         self.ventanaMC = mcMenu.Ui_Frame()
-
         self.ventanaMC.setupUi(self)
         self.ventanaMC.pushButton.clicked.connect(self.about)
         self.ventanaMC.pushButton_2.clicked.connect(self.about)
         self.ventanaMC.pushButton_3.clicked.connect(self.about)
         self.showTreeDir()
         return
+
 
     def showTreeDir(self):
         self.model = QtGui.QDirModel()
@@ -39,8 +39,6 @@ class CalcsApp(QtGui.QFrame, mcMenu.Ui_Frame):
         self.ventanaMC.treeView.hideColumn(1)
         self.ventanaMC.treeView.hideColumn(2)
         self.ventanaMC.treeView.hideColumn(3)
-
-
         self.ventanaMC.treeView.show()
         return
 
