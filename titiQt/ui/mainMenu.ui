@@ -14,7 +14,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>saTellITal Image viewer: Titi</string>
+   <string>Titi</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="mouseTracking">
@@ -34,6 +34,9 @@
       <widget class="QRadioButton" name="radioButton_1">
        <property name="text">
         <string>Orbits</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

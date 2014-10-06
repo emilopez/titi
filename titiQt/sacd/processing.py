@@ -5,6 +5,10 @@ import os
 import tarfile
 import shutil
 
+# para activar las exceptions
+gdal.UseExceptions()
+
+
 def extractFiles(listFiles,textEdit):
 #"""
  #funcion que recibe:
