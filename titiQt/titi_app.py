@@ -11,11 +11,12 @@ import numpy as np
 
 from ui import mainMenu, orbitsMenu, imagesMenu, mcMenu
 import titi_calcs
+import titi_calcs_app
 from generic import module, rasterIO
 from sacd import processing, visualization
 
 
-class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu):
+class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu, mcMenu.Ui_Frame):
     def __init__(self,parent = None):
         QtGui.QMainWindow.__init__(self,parent)
         # se crea la ventana principal
@@ -44,6 +45,8 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # acciones botones
         self.connect(self.ventana.radioButton_1,QtCore.SIGNAL("clicked()"),self.showOrbitsMenu)
         self.connect(self.ventana.radioButton_2,QtCore.SIGNAL("clicked()"),self.showImagesMenu)
+        # por defecto esta seleccionado orbitsMenu
+        self.showOrbitsMenu()
 
     ###----------------------------Orbits Menu---------------------------------
     def showOrbitsMenu(self):
@@ -74,16 +77,15 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.clear()
         # se desactiva el boton guardar
         self.orbitsMenu.pushButton_3.setEnabled(False)
+        # se listan los archivos seleccionados (self.listFiles es una QStringList)
         self.listFiles = QtGui.QFileDialog.getOpenFileNames(self, "Select file/s tar.gz")
-        ## self.listFiles es una QStringList
-        print self.listFiles.isEmpty()
+        # print self.listFiles.isEmpty()
         if (self.listFiles.isEmpty() == False):
-            #self.ventana.textEdit.setText("#### Opened Folder #### \n"+self.folder + "\n")
-            ### se valida la existencia de archivos tar.gz
-            # se listan los archivos del directorio
+            #self.ventana.textEdit.setText("#### Opened Folder #### \n"+self.listFiles + "\n")
             #listFile = os.listdir(self.folder)
             numFiles = self.listFiles.count()
-            print numFiles
+            #print numFiles
+            # se valida la existencia de archivos tar.gz
             flag = 0
             for i in range(0,numFiles):
                 if str(self.listFiles[i]).find(".tar.gz") != -1:
@@ -382,11 +384,16 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
     ###------------------------MassiveCalc--------------------------
     def showMC(self):
         # se invoca la ventana calculo masivos
-        mc = QtGui.QFrame()
-        ui = Ui_Frame()
-        ui.setupUi(Frame)
-        Frame.show()
-
+        # primero se crea el objeto frame
+        self.frame = QtGui.QFrame()
+        self.frame.setWindowTitle("Titi")
+        # se instancia la clase de la ventana calculos masivos
+        titi_calcs_app.CalcsApp(self.frame)
+        # se le fija el tamaño a la ventana y se quita el resize
+        width = 900
+        height = 600
+        self.frame.setFixedSize(width, height)
+        self.frame.show()
         return
 
     ###------------------------Fin massiveCalc---------------------------------
