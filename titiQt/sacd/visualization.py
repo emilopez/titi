@@ -8,12 +8,22 @@ import processing
 
 
 def generateMap(maptype,level,textEdit):
-#"""
-    #funcion que recibe:
-        #el tipo de mapa
-        #el nivel de procesamiento de SAC-D
-    #retorna: el objeto basemap creado
-#"""
+    """ Función que genera el mapa planisferio del mundo
+
+    Utilizando el parámetro maptype se genera el mapamundi.
+    Dependiendo el nivel de procesamiento se colorean o no los continentes.
+    Las acciones realizadas se registran en el objeto Qt textEdit
+
+    :param maptype: Tipo de mapa que se desea generar
+    :type maptype: str
+    :param level: Nivel de procesamiendo
+    :type level: str
+    :param textEdit: Objeto textEdit de Qt
+    :type textEdit: QTextEdit
+    :returns: El mapa creado
+    :rtype: mpl_toolkits.basemap
+    """
+
     textEdit.append("Generando mapa...")
     # se crea el mapa
     map = Basemap(projection=maptype, lat_0=0, lon_0=0, resolution='l', area_thresh=1000.0)
@@ -30,18 +40,36 @@ def generateMap(maptype,level,textEdit):
 
 
 def graphSACDProduct(plt, fig, path, level, nameProduct, nameCB,mapa,textEdit):
-#"""
-    #funcion que recibe:
-        #el path de la carpeta donde se encuentran los archivos HDF
-        #el nivel de procesamiento de SAC-D
-        #el typo de producto que va a graficar
-        #el typo de escala de colores
-    #retorna: la grafica del producto, por ahora todos los archivos contenidos en el fichero
-#"""
+    """ Función que grafica el producto/banda requerido
+
+    A partir de los archivos que se encuentran descomprimidos en el directorio
+    indicado en path esta función grafica el producto/banda deseado utilizando
+    el mapa y la escala de colores recibidos como parámetros.
+    Todas las acciones realizadas se registran en el objeto Qt textEdit.
+
+    :param plt: Elemento matplotlib utilizado para graficar
+    :type plt: matplotlib.pyplot
+    :param fig: Elemento utilizado para anexar la barra de colores
+    :type fig: plt.figure
+    :param path: Camino del directorio donde se encuentran los archivos
+    :type path: str
+    :param level: Nivel de procesamiendo
+    :type level: str
+    :param nameProduct: Nombre de la banda/producto a graficar
+    :type nameProduct: str
+    :param nameCB: Nombre de la escala de colores a emplear
+    :type nameCB: str
+    :param mapa: Mapa planisferio del mundo
+    :type mapa: mpl_toolkits.basemap
+    :param textEdit: Objeto textEdit de Qt
+    :type textEdit: QTextEdit
+    :returns: Sin retorno, realiza los cambios sobre parámetro fig
+    :rtype: --
+    """
+
     textEdit.append("Graficando orbitas...")
     # se crea la escala de colores
     cbType = plt.cm.get_cmap(nameCB, 10)
-    # se genera el mapa
     #--------------------------------------------------------------------------
     # se crea una lista de los archivos HDF de la carpeta
     listFile = os.listdir(path)
@@ -51,7 +79,6 @@ def graphSACDProduct(plt, fig, path, level, nameProduct, nameCB,mapa,textEdit):
     textEdit.append("Numero de archivos: " + str(numFiles))
     # se recorren todos los archivos
     for i in range(0, numFiles):
-    #for i in range(0, 4):
         textEdit.append( "Archivo numero: " + str(i + 1))
         dirFile = path + "/" + listFile[i]
         nameFile = dirFile + "/" + listFile[i] + ".h5"
@@ -65,7 +92,6 @@ def graphSACDProduct(plt, fig, path, level, nameProduct, nameCB,mapa,textEdit):
         x, y = mapa(lon, lat)
         # se escriben sobre el mapa
         out = plt.scatter(x, y, 0.3, product, cmap=cbType, marker='+')
-    # endfor
     # se agrega el titulo, la escala de colores y la etiqueta al grafico
     plt.title(nameProduct)
     cbar = fig.colorbar(out,shrink = 0.95, pad = 0.01)
@@ -77,3 +103,4 @@ def graphSACDProduct(plt, fig, path, level, nameProduct, nameCB,mapa,textEdit):
         if (nameProduct == "columnar_water_vapor"):
             cbar.set_label("[mm]")
     return
+
