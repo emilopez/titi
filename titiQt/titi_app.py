@@ -50,6 +50,13 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
 
     ###----------------------------Orbits Menu---------------------------------
     def showOrbitsMenu(self):
+        """ Función que carga el menú orbitas
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # se borran las imagenes previas, textEdit y otros
         self.clear()
         # se elimina elementos creados previos si es que existen
@@ -63,7 +70,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # se inserta el menu en la ventana principal
         self.ventana.verticalLayout_2.addWidget(orbitsMenuQw)
         # acciones de los elementos de orbitsMenu
-        self.orbitsMenu.pushButton.clicked.connect(self.openFolder)
+        self.orbitsMenu.pushButton.clicked.connect(self.openTargz)
         # si se selecciona el nivel, se cargan los productos/bandas
         self.orbitsMenu.comboBox.currentIndexChanged.connect(self.putProductBand)
         self.orbitsMenu.comboBox_2.currentIndexChanged.connect(self.putMaps)
@@ -72,7 +79,14 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.orbitsMenu.pushButton_2.clicked.connect(self.graph)
         self.orbitsMenu.pushButton_3.clicked.connect(self.savePlot)
 
-    def openFolder(self):
+    def openTargz(self):
+        """ Función que abre los archivos tar.gz pertenecientes a SAC-D/Aquarius (menú orbitas)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # se borran las imagenes previas, textEdit y otros
         self.clear()
         # se desactiva el boton guardar
@@ -100,14 +114,26 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
 
 
     def putLevels(self):
-        ## coloca los niveles de procesamiento
+        """ Función carga los niveles de procesamiento (menú orbitas)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         self.orbitsMenu.comboBox.clear()
         self.orbitsMenu.comboBox.addItem("None")
         self.orbitsMenu.comboBox.addItem("L1B")
         self.orbitsMenu.comboBox.addItem("L2")
 
     def putProductBand(self):
-        ## coloca las banda/productos segun el nivel
+        """ Función que carga las bandas o productos según el nivel de procesamiento (menú orbitas)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # se obtiene el valor del combobox  de nivel de procesamiento
         text = self.orbitsMenu.comboBox.currentText()
         # se borra el combobox de las bandas
@@ -123,23 +149,22 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
             self.orbitsMenu.comboBox_2.addItem("ka_v_antenna_temperature")
             self.orbitsMenu.comboBox_2.addItem("ka_n45_antenna_temperature")
             self.orbitsMenu.comboBox_2.addItem("ka_p45_antenna_temperature")
-            # se activa graficar
-            #value=str(self.ventana.textEdit.toPlainText())
-            #if (value != ""):
-                #self.ventana.pushButton.setEnabled(True)
         if (text == "L2"):
             # se cargan los productos de nivel L2
             self.orbitsMenu.comboBox_2.addItem("None")
             self.orbitsMenu.comboBox_2.addItem("columnar_water_vapor")
             self.orbitsMenu.comboBox_2.addItem("wind_speed")
-            # se activa graficar
-            #value = str(self.ventana.textEdit.toPlainText())
-            #if (value != ""):
-                #self.ventana.pushButton.setEnabled(True)
+
 
 
     def putMaps(self):
-        ## coloca los tipo de mapa
+        """ Función que carga los tipos de mapa en los que se puede graficar (menú orbitas)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # se obtiene el valor del combobox banda/producto
         text = self.orbitsMenu.comboBox_2.currentText()
         # se borra el combobox de las bandas
@@ -155,6 +180,13 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
 
     def putColorbars(self):
         ## coloca los tipos de color bar
+        """ Función que carga las diferentes escalas de colores (menú orbitas)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # se obtiene el valor del combobox banda/producto
         text = self.orbitsMenu.comboBox_3.currentText()
         # se borra el combobox de las bandas
@@ -170,6 +202,13 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
             self.orbitsMenu.comboBox_4.addItem("winter")
 
     def activateButtonGraph(self):
+        """ Función que activa el boton graficar (menú orbitas)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # se obtiene el valor del combobox banda/producto
         text = self.orbitsMenu.comboBox_4.currentText()
         # si se selecciono None
@@ -179,6 +218,13 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
             self.orbitsMenu.pushButton_2.setEnabled(True)
 
     def graph(self):
+        """ Función que grafica los archivos tar.gz seleccionados (menú orbitas)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         self.ventana.textEdit.append("Iniciando...")
         # se actualiza la interfaz para mostrar las acciones en el textEdit
         QtGui.QApplication.processEvents()
@@ -220,12 +266,16 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.canvas.draw()
         # se activa el boton guardar grafica
         self.orbitsMenu.pushButton_3.setEnabled(True)
-        # se cierra la figura para liberar memoria (MUY IMPORTANTE)
-        ##plt.clf()
-        ##plt.clear()
         return
 
     def savePlot(self):
+        """ Función que permite guardar la grafica creada en formato png (menú orbitas)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         file_choices = "PNG (*.png)|*.png"
         self.dpi = 100
         path = unicode(QtGui.QFileDialog.getSaveFileName(self,'Save file', '',file_choices))
@@ -238,6 +288,13 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
 
     ###----------------------------Images Menu---------------------------------
     def showImagesMenu(self):
+        """ Función que carga el menú imágenes
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # se borran las imagenes previas, textEdit y otros
         self.clear()
         ## se elimina elementos creados previos si es que existen
@@ -261,6 +318,13 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.imagesMenu.pushButton_2.clicked.connect(self.extract)
 
     def openFile(self):
+        """ Función que abre archivos de imágenes de diferentes formatos (menú imagenes)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # se borran las imagenes previas, textEdit y otros
         self.clear()
         # se desactiva el boton guardar
@@ -268,7 +332,6 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         #self.putTextComboBox()
         self.filename = QtGui.QFileDialog.getOpenFileName(self, 'Open File')
         if (self.filename != ""):
-            #self.ventana.label_2.setText(self.filename)
             self.ventana.textEdit.setText("#### Opened File #### \n"+self.filename)
             # se carga la imagen con rasterIO-- todas las que sean compatible con GDAL!!!
             self.file_pointer = rasterIO.opengdalraster(str(self.filename))
@@ -294,10 +357,15 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
             self.putBand()
         # se actualiza la interfaz para mostrar las acciones en el textEdit
         QtGui.QApplication.processEvents()
-        return
-
 
     def putBand(self):
+        """ Función carga las bandas de la imagen (menú imagenes)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         colorMap = self.imagesMenu.comboBox.currentText()
         # se borra el combobox de las bandas
         self.imagesMenu.comboBox_2.clear()
@@ -305,9 +373,15 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # se obtiene la cantidad de bandas de la imagen seleccionada
         bands = [str(b) for b in range(1, self.NBand + 1)]
         self.imagesMenu.comboBox_2.addItems(bands)
-        return
 
     def putImage(self):
+        """ Función que muestra la imagen requerida (menú imagenes)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         self.clear1()
         # se obtiene el colormap seleccionado
         colorMap = str(self.imagesMenu.comboBox.currentText())
@@ -325,7 +399,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         image = self.ax.imshow(self.data, cmap=colorValue)
         # se inserta la barra de colores
         # el segundo parametro es el tamano de la barra de colores
-        self.figure.colorbar(image, pad = 0.01)
+        self.figure.colorbar(image, pad=0.01)
         # para hacer mas pequenios los margenes
         self.figure.tight_layout()
         # se actualiza la interfaz para mostrar las acciones en el textEdit
@@ -334,19 +408,41 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.canvas.draw()
         # se activa el boton extract
         self.imagesMenu.pushButton_2.setEnabled(True)
-        return
 
     def changeRowCol(self):
+        """ Función que intercambia los nombres de los combobox (menú imagenes)
+
+        Cambia label Latitude/Longitude por Row/column
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         self.imagesMenu.label_4.setText('Row')
         self.imagesMenu.label_5.setText('Column')
-        return
 
     def changeLatLon(self):
+        """ Función que intercambia los nombres de los combobox (menú imagenes)
+
+        Cambia label Row/column por Latitude/Longitude
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         self.imagesMenu.label_4.setText('Latitude')
         self.imagesMenu.label_5.setText('Longitude')
-        return
 
     def extract(self):
+        """ Función que permite extrar el valor de un pixel de la imagen (menú imagenes)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # Get the value from image
         if (self.imagesMenu.radioButton.isChecked()):
             # esta seleccionada "Lat/Lon"
@@ -362,28 +458,30 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
             lat,lon = module.getLatLon(row,col,self.lat0, self.lon0, self.dlat, self.dlon)
         ## Format the info to be logged
         sms = "\n+ Extract operation \n"
-        sms += "     Lat = "+ str(lat) + "\n"
-        sms += "     Lon = "+ str(lon) + "\n"
-        sms += "     Row = "+ str(row) + "\n"
-        sms += "     Col = "+ str(col) + "\n"
+        sms += "     Lat = " + str(lat) + "\n"
+        sms += "     Lon = " + str(lon) + "\n"
+        sms += "     Row = " + str(row) + "\n"
+        sms += "     Col = " + str(col) + "\n"
         self.ventana.textEdit.append(sms)
-
-        if ( self.YSize < row or row < 0 ) or (self.XSize < col or col < 0 ):
+        if (self.YSize < row or row < 0) or (self.XSize < col or col < 0):
             # if row or col are out of bounds
             self.ventana.textEdit.append("\n Error: Row or column out of bouds")
         else:
             self.imagesMenu.lineEdit_3.setText(str(self.data[row][col]))
             self.ventana.textEdit.append("     Extracted value = "+str(self.data[row][col]))
 
-        ## Scroll to show the las log added
-        #self.m_txt_log.ShowPosition( self.m_txt_log.GetLastPosition())
-        return
+    ###------------------------Fin Images Menu---------------------------------
+    ###------------------------------------------------------------------------
+    ###------------------------MassiveCalc-------------------------------------
 
-    ###------------------------Fin Images Menu--------------------------
-
-    ###------------------------MassiveCalc--------------------------
     def showMC(self):
-        # se invoca la ventana calculo masivos
+        """ Función que muestra la ventana de calculos masivos
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         # primero se crea el objeto frame
         self.frame = QtGui.QFrame()
         self.frame.setWindowTitle("Titi")
@@ -397,21 +495,31 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         return
 
     ###------------------------Fin massiveCalc---------------------------------
-
+    ###------------------------------------------------------------------------
     ###------------------------Funciones generales-----------------------------
 
     def removeButtons(self):
-        # elimina los widgets agregados dinamicamiente (orbitsMenu or imagesMenu)
+        """ Función que elimina los widgets agregados dinamicamente (menú orbitas o imágenes)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         for cnt in range(self.ventana.verticalLayout_2.count()):
             value = str(self.ventana.verticalLayout_2.itemAt(cnt))
             #print value
             if (value.find("QWidgetItem") != -1):
                 self.ventana.verticalLayout_2.itemAt(cnt).widget().close()
-            #else:
-                ## es un QHBoxLayout
-                #self.ventana.verticalLayout_3.itemAt(cnt).layout.delete()
 
     def mouse_move(self, event):
+        """ Función que captura la posición del mouse sobre la imagen (menú imágenes)
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         if not event.inaxes:
             return
         if (self.ventana.radioButton_2.isChecked()):
@@ -436,29 +544,42 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
             sms = "Row,Col = ["+str(row) + "," + str(col) + "]     |     Lat,Lon =  [" + str(lat) + "," + str(lon) + "]"
             sms += "    |    Value = " + str(self.data[row,col])
             self.statusBar().showMessage(sms)
-        return
-
-
 
     def clear(self):
-        ## borra las graficas, el label de filename y la barra de acciones
+        """ Función que borra las gráficas y la barra de acciones
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         self.figure.clear()
         self.canvas.draw()
         self.figure2.clear()
         self.canvas2.draw()
-        self.ventana.label_2.clear()
         self.ventana.textEdit.clear()
-        return
 
     def clear1(self):
-        ## borra graficas
+        """ Función que borra las gráficas
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         self.figure.clear()
         self.canvas.draw()
         self.figure2.clear()
         self.canvas2.draw()
-        return
 
     def about(self):
+        """ Función que muestra cuadro de diálogo con info acerca del software
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         QtGui.QMessageBox.about(self, self.tr("Acerca de..."),
         self.tr("saTellITal Image viewer\n\n"
                 "Autor: CENEHA - Centro de Estudios Hidroambientales \n"
