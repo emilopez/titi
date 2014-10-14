@@ -24,27 +24,29 @@ class CalcsApp(QtGui.QFrame, mcMenu.Ui_Frame):
         self.showTreeDir()
         return
 
-
     def showTreeDir(self):
+        """ Función que carga el árbol de directorios del ordenador
+
+        :param self: instancia de la clase MainApp
+        :type self: titi_app.MainApp
+        :returns: Sin retorno
+        :rtype: --
+        """
         self.model = QtGui.QDirModel()
         self.ventanaMC.treeView.setModel(self.model)
-        #self.tree = QtGui.QTreeView(self)
-        #self.tree.setModel(self.model)
         self.model.setFilter(QtCore.QDir.Dirs|QtCore.QDir.NoDotAndDotDot)
-        #self.tree.setSortingEnabled(True)
-        #self.tree.setRootIndex(self.model.index("/home/"))
-
         self.ventanaMC.treeView.setSortingEnabled(True)
         self.ventanaMC.treeView.setRootIndex(self.model.index(os.getcwd()))
         self.ventanaMC.treeView.hideColumn(1)
         self.ventanaMC.treeView.hideColumn(2)
         self.ventanaMC.treeView.hideColumn(3)
         self.ventanaMC.treeView.show()
-        return
 
 
     ###------------------------Fin massiveCalc---------------------------------
 
+#### esta función se va!!!! es solo para mostrar como poner funcionalidades
+#### en calculos masivos!!!!!!
     def about(self):
         QtGui.QMessageBox.about(self, self.tr("Acerca de..."),
         self.tr("saTellITal Image viewer\n\n"
