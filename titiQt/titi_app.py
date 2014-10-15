@@ -42,11 +42,20 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         #self.connect(self.ventana.action_guardar,QtCore.SIGNAL("triggered()"),self.guardarPlot)
         self.connect(self.ventana.action_About,QtCore.SIGNAL("triggered()"),self.about)
         self.connect(self.ventana.actionMassiveCalc,QtCore.SIGNAL("triggered()"),self.showMC)
-        # acciones botones
-        self.connect(self.ventana.radioButton_1,QtCore.SIGNAL("clicked()"),self.showOrbitsMenu)
-        self.connect(self.ventana.radioButton_2,QtCore.SIGNAL("clicked()"),self.showImagesMenu)
-        # por defecto esta seleccionado orbitsMenu
-        self.showOrbitsMenu()
+        # acciones combobox
+        self.connect(self.ventana.comboBox, QtCore.SIGNAL("currentIndexChanged(int)"),self.putMenu)
+        #### por defecto esta seleccionado orbitsMenu
+        ###self.showOrbitsMenu()
+
+
+    def putMenu(self):
+        valorCB = str(self.ventana.comboBox.currentText())
+        if (valorCB == "SAC-D/Aquarius"):
+            self.showOrbitsMenu()
+        elif (valorCB == "None"):
+            self.removeButtons()
+        else:
+            self.showImagesMenu()
 
     ###----------------------------Orbits Menu---------------------------------
     def showOrbitsMenu(self):
