@@ -94,7 +94,7 @@ def graphSACDProduct(plt, fig, path, level, nameProduct, nameCB,mapa,textEdit):
         out = plt.scatter(x, y, 0.3, product, cmap=cbType, marker='+')
     # se agrega el titulo, la escala de colores y la etiqueta al grafico
     plt.title(nameProduct)
-    cbar = fig.colorbar(out,shrink = 0.95, pad = 0.01)
+    cbar = fig.colorbar(out,shrink = 0.75, pad = 0.01)
     if (level == "L1B"):
         cbar.set_label("[K]")
     if (level == "L2"):
