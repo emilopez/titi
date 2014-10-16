@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainMenu.ui'
 #
-# Created: Wed Oct 15 18:35:08 2014
+# Created: Wed Oct 15 19:04:19 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -52,7 +52,7 @@ class Ui_MainWindow(object):
         self.label_2.setText(_fromUtf8(""))
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.verticalLayoutWidget = QtGui.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, -10, 761, 481))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, -10, 761, 481))
         self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
         self.verticalLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setMargin(0)
@@ -102,6 +102,7 @@ class Ui_MainWindow(object):
         self.comboBox.addItem(_fromUtf8(""))
         self.comboBox.addItem(_fromUtf8(""))
         self.comboBox.addItem(_fromUtf8(""))
+        self.comboBox.addItem(_fromUtf8(""))
         self.verticalLayout_5.addWidget(self.comboBox)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
@@ -141,7 +142,8 @@ class Ui_MainWindow(object):
         self.comboBox.setItemText(2, _translate("MainWindow", "EOS (MODIS)", None))
         self.comboBox.setItemText(3, _translate("MainWindow", "INTA", None))
         self.comboBox.setItemText(4, _translate("MainWindow", "SAC-D/Aquarius", None))
-        self.comboBox.setItemText(5, _translate("MainWindow", "LANDSAT (tif)", None))
+        self.comboBox.setItemText(5, _translate("MainWindow", "NOAA", None))
+        self.comboBox.setItemText(6, _translate("MainWindow", "LANDSAT (tif)", None))
         self.menu_File.setTitle(_translate("MainWindow", "&File", None))
         self.menu_Help.setTitle(_translate("MainWindow", "&Help", None))
         self.menuView.setTitle(_translate("MainWindow", "View", None))

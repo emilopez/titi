@@ -84,7 +84,7 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>-10</y>
       <width>761</width>
       <height>481</height>
@@ -103,7 +103,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_4" stretch=""/>
+      <layout class="QVBoxLayout" name="verticalLayout_4"/>
      </item>
     </layout>
    </widget>
@@ -187,6 +187,11 @@
        <item>
         <property name="text">
          <string>SAC-D/Aquarius</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>NOAA</string>
         </property>
        </item>
        <item>
