@@ -272,6 +272,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # se actualiza la interfaz para mostrar las acciones en el textEdit
         QtGui.QApplication.processEvents()
         # se grafica
+        self.figure.subplots_adjust(left=0.05,right=0.95,bottom=0.05,top=0.95)
         self.canvas.draw()
         # se activa el boton guardar grafica
         self.orbitsMenu.pushButton_3.setEnabled(True)
@@ -529,9 +530,10 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         :returns: Sin retorno
         :rtype: --
         """
+        valorCB = str(self.ventana.comboBox.currentText())
         if not event.inaxes:
             return
-        if (self.ventana.radioButton_2.isChecked()):
+        if (valorCB != "SAC-D/Aquarius"):
             # solo si se encuentra en imagesMenu
             #if (self.ventana.verticalLayout_3.count() == 0):
                 ## no se agrego la figura de zoom aun
