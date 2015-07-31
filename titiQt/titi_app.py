@@ -18,7 +18,9 @@ from sacd import processing, visualization
 
 class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow,
 orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu, mcMenu.Ui_Frame):
-    def __init__(self,parent = None):
+
+    def __init__(self, parent = None):
+
         QtGui.QMainWindow.__init__(self, parent)
         # se crea la ventana principal
         self.ventana = mainMenu.Ui_MainWindow()
@@ -52,8 +54,8 @@ orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu, mcMenu.Ui_Frame):
         #### por defecto esta seleccionado orbitsMenu
         ###self.showOrbitsMenu()
 
-
     def putMenu(self):
+
         valorCB = str(self.ventana.comboBox.currentText())
         if (valorCB == "SAC-D/Aquarius"):
             self.showOrbitsMenu()
