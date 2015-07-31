@@ -160,7 +160,7 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>141</width>
+         <width>145</width>
          <height>27</height>
         </size>
        </property>
@@ -171,7 +171,7 @@
        </item>
        <item>
         <property name="text">
-         <string>GeoTiff (dem/bil/tif/img)</string>
+         <string>GeoTiff (bil/tif/img...)</string>
         </property>
        </item>
        <item>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainMenu.ui'
 #
-# Created: Fri Jul 31 15:19:25 2015
+# Created: Fri Jul 31 15:58:21 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -94,7 +94,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
         self.comboBox.setSizePolicy(sizePolicy)
         self.comboBox.setMinimumSize(QtCore.QSize(141, 27))
-        self.comboBox.setMaximumSize(QtCore.QSize(141, 27))
+        self.comboBox.setMaximumSize(QtCore.QSize(145, 27))
         self.comboBox.setObjectName(_fromUtf8("comboBox"))
         self.comboBox.addItem(_fromUtf8(""))
         self.comboBox.addItem(_fromUtf8(""))
@@ -134,7 +134,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Titi", None))
         self.label.setText(_translate("MainWindow", "Data File", None))
         self.comboBox.setItemText(0, _translate("MainWindow", "None", None))
-        self.comboBox.setItemText(1, _translate("MainWindow", "GeoTiff (dem/bil/tif/img)", None))
+        self.comboBox.setItemText(1, _translate("MainWindow", "GeoTiff (bil/tif/img...)", None))
         self.comboBox.setItemText(2, _translate("MainWindow", "SAC-D/Aquarius", None))
         self.menu_File.setTitle(_translate("MainWindow", "&File", None))
         self.menu_Help.setTitle(_translate("MainWindow", "&Help", None))
