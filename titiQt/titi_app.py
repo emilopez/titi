@@ -16,9 +16,10 @@ from generic import module, rasterIO
 from sacd import processing, visualization
 
 
-class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu, mcMenu.Ui_Frame):
+class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow,
+orbitsMenu.Ui_orbitsMenu, imagesMenu.Ui_imagesMenu, mcMenu.Ui_Frame):
     def __init__(self,parent = None):
-        QtGui.QMainWindow.__init__(self,parent)
+        QtGui.QMainWindow.__init__(self, parent)
         # se crea la ventana principal
         self.ventana = mainMenu.Ui_MainWindow()
         self.ventana.setupUi(self)
@@ -37,13 +38,17 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.main_frame2 = self.ventana.verticalLayout_3.addWidget(self.canvas2)
 
         ### acciones bar menu
-        self.connect(self.ventana.action_Quit,QtCore.SIGNAL("triggered()"),QtCore.SLOT('close()'))
+        self.connect(self.ventana.action_Quit, QtCore.SIGNAL("triggered()"),
+            QtCore.SLOT('close()'))
         #self.connect(self.ventana.action_Abrir,QtCore.SIGNAL("triggered()"),self.openFile)
         #self.connect(self.ventana.action_guardar,QtCore.SIGNAL("triggered()"),self.guardarPlot)
-        self.connect(self.ventana.action_About,QtCore.SIGNAL("triggered()"),self.about)
-        self.connect(self.ventana.actionMassiveCalc,QtCore.SIGNAL("triggered()"),self.showMC)
+        self.connect(self.ventana.action_About,
+        QtCore.SIGNAL("triggered()"), self.about)
+        self.connect(self.ventana.actionMassiveCalc,
+        QtCore.SIGNAL("triggered()"), self.showMC)
         # acciones combobox
-        self.connect(self.ventana.comboBox, QtCore.SIGNAL("currentIndexChanged(int)"),self.putMenu)
+        self.connect(self.ventana.comboBox,
+        QtCore.SIGNAL("currentIndexChanged(int)"), self.putMenu)
         #### por defecto esta seleccionado orbitsMenu
         ###self.showOrbitsMenu()
 
@@ -89,7 +94,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.orbitsMenu.pushButton_3.clicked.connect(self.savePlot)
 
     def openTargz(self):
-        """ Función que abre los archivos tar.gz pertenecientes a SAC-D/Aquarius (menú orbitas)
+        """ Abre archivos tar.gz pertenecientes a SAC-D/Aquarius (menú orbitas)
 
         :param self: instancia de la clase MainApp
         :type self: titi_app.MainApp
@@ -100,27 +105,28 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.clear()
         # se desactiva el boton guardar
         self.orbitsMenu.pushButton_3.setEnabled(False)
-        # se listan los archivos seleccionados (self.listFiles es una QStringList)
-        self.listFiles = QtGui.QFileDialog.getOpenFileNames(self, "Select file/s tar.gz")
+        # lista archivos seleccionados (self.listFiles es una QStringList)
+        self.listFiles = QtGui.QFileDialog.getOpenFileNames(self,
+             "Select file/s tar.gz")
         # print self.listFiles.isEmpty()
-        if (self.listFiles.isEmpty() == False):
-            #self.ventana.textEdit.setText("#### Opened Folder #### \n"+self.listFiles + "\n")
+        if (self.listFiles.isEmpty() is False):
+            #self.ventana.textEdit.setText("# Opened Folder # \n"+self.listFiles + "\n")
             #listFile = os.listdir(self.folder)
             numFiles = self.listFiles.count()
             #print numFiles
             # se valida la existencia de archivos tar.gz
             flag = 0
-            for i in range(0,numFiles):
+            for i in range(0, numFiles):
                 if str(self.listFiles[i]).find(".tar.gz") != -1:
                     flag = 1
             if (flag != 1):
                 reply = QtGui.QMessageBox.critical(self, 'Message',
-                "File/s has/have to be files tar.gz from SAC-D/Aquarius mission")
-                self.listFiles = QtGui.QFileDialog.getOpenFileNames(self, "Select file/s tar.gz")
+                "tar.gz files from SAC-D/Aquarius mission")
+                self.listFiles = QtGui.QFileDialog.getOpenFileNames(self,
+                "Select file/s tar.gz")
             ## se cargan los niveles
             self.putLevels()
         self.activateButtonGraph()
-
 
     def putLevels(self):
         """ Función carga los niveles de procesamiento (menú orbitas)
@@ -136,7 +142,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.orbitsMenu.comboBox.addItem("L2")
 
     def putProductBand(self):
-        """ Función que carga las bandas o productos según el nivel de procesamiento (menú orbitas)
+        """ Carga bandas/productos según nivel de procesamiento (menú orbitas)
 
         :param self: instancia de la clase MainApp
         :type self: titi_app.MainApp
@@ -164,10 +170,8 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
             self.orbitsMenu.comboBox_2.addItem("columnar_water_vapor")
             self.orbitsMenu.comboBox_2.addItem("wind_speed")
 
-
-
     def putMaps(self):
-        """ Función que carga los tipos de mapa en los que se puede graficar (menú orbitas)
+        """ Carga tipos de mapa donde se puede graficar (menú orbitas)
 
         :param self: instancia de la clase MainApp
         :type self: titi_app.MainApp
@@ -223,7 +227,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # si se selecciono None
         if (text == "None"):
             self.orbitsMenu.pushButton_2.setEnabled(False)
-        if ((self.listFiles.isEmpty() == False) and (text != "None")):
+        if ((self.listFiles.isEmpty() is False) and (text != "None")):
             self.orbitsMenu.pushButton_2.setEnabled(True)
 
     def graph(self):
@@ -262,7 +266,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # se actualiza la interfaz para mostrar las acciones en el textEdit
         QtGui.QApplication.processEvents()
         # se obtiene la imagen
-        visualization.graphSACDProduct(plt,self.figure, pathHDF, level, nameProduct, nameCB, mapa, self.ventana.textEdit)
+        visualization.graphSACDProduct(plt, self.figure, pathHDF, level, nameProduct, nameCB, mapa, self.ventana.textEdit)
         # para hacer mas pequenios los margenes
         self.figure.tight_layout()
         # se actualiza la interfaz para mostrar las acciones en el textEdit
@@ -272,14 +276,14 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         # se actualiza la interfaz para mostrar las acciones en el textEdit
         QtGui.QApplication.processEvents()
         # se grafica
-        self.figure.subplots_adjust(left=0.05,right=0.95,bottom=0.05,top=0.95)
+        self.figure.subplots_adjust(left = 0.05, right = 0.95, bottom = 0.05, top = 0.95)
         self.canvas.draw()
         # se activa el boton guardar grafica
         self.orbitsMenu.pushButton_3.setEnabled(True)
         return
 
     def savePlot(self):
-        """ Función que permite guardar la grafica creada en formato png (menú orbitas)
+        """ Guarda grafico creado en formato png (menú orbitas)
 
         :param self: instancia de la clase MainApp
         :type self: titi_app.MainApp
@@ -328,7 +332,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.imagesMenu.pushButton_2.clicked.connect(self.extract)
 
     def openFile(self):
-        """ Función que abre archivos de imágenes de diferentes formatos (menú imagenes)
+        """ Abre imágenes GeoTiff (menú imagenes)
 
         :param self: instancia de la clase MainApp
         :type self: titi_app.MainApp
@@ -342,24 +346,25 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         #self.putTextComboBox()
         self.filename = QtGui.QFileDialog.getOpenFileName(self, 'Open File')
         if (self.filename != ""):
-            self.ventana.textEdit.setText("#### Opened File #### \n"+self.filename)
-            # se carga la imagen con rasterIO-- todas las que sean compatible con GDAL!!!
+            self.ventana.textEdit.setText("# Opened File # \n" + self.filename)
+            # carga imagen con rasterIO /GDAL compatible
             self.file_pointer = rasterIO.opengdalraster(str(self.filename))
             driver, self.XSize, self.YSize, self.NBand, proj_wkt, geo = rasterIO.readrastermeta(self.file_pointer)
-            self.lon0,self.lat0,self.dlon,self.dlat = geo[0],geo[3],geo[1],geo[5]
+            self.lon0, self.lat0 = geo[0], geo[3]
+            self.dlon, self.dlat = geo[1], geo[5]
             # rango de latitud y longitud
-            max_lat = self.lat0 + self.YSize*self.dlat
-            max_lon = self.lon0 + self.XSize*self.dlon
+            max_lat = self.lat0 + self.YSize * self.dlat
+            max_lon = self.lon0 + self.XSize * self.dlon
             # Show and Log figure metadata
-            sms = "\n+ Metadata \n    " + proj_wkt +"\n"
+            sms = "\n+ Metadata \n    " + proj_wkt + "\n"
             sms += "    - Size = " + str(self.YSize) + "," + str(self.XSize) + "\n"
             sms += "    - Delta latitude = " + str(self.dlat) + "\n    - Delta longitude = " + str(self.dlon) + "\n"
             sms += "    - Latitude limits: \n"
-            sms += "        from = "+ str(self.lat0) + "\n"
-            sms += "        to   = "+ str(max_lat) + "\n"
+            sms += "        from = " + str(self.lat0) + "\n"
+            sms += "        to   = " + str(max_lat) + "\n"
             sms += "    - Longitude limits: \n"
-            sms += "        from = "+ str(self.lon0) + "\n"
-            sms += "        to   = "+ str(max_lon) + "\n"
+            sms += "        from = " + str(self.lon0) + "\n"
+            sms += "        to   = " + str(max_lon) + "\n"
             self.ventana.textEdit.append(sms)
             # se muestra la imagen con el mapa de colores y la banda 1
             self.putImage()
@@ -420,7 +425,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.imagesMenu.pushButton_2.setEnabled(True)
 
     def changeRowCol(self):
-        """ Función que intercambia los nombres de los combobox (menú imagenes)
+        """ Intercambia los nombres de los combobox (menú imagenes)
 
         Cambia label Latitude/Longitude por Row/column
 
@@ -433,7 +438,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.imagesMenu.label_5.setText('Column')
 
     def changeLatLon(self):
-        """ Función que intercambia los nombres de los combobox (menú imagenes)
+        """ Intercambia los nombres de los combobox (menú imagenes)
 
         Cambia label Row/column por Latitude/Longitude
 
@@ -446,7 +451,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
         self.imagesMenu.label_5.setText('Longitude')
 
     def extract(self):
-        """ Función que permite extrar el valor de un pixel de la imagen (menú imagenes)
+        """ Extrae el valor de un pixel de la imagen (menú imagenes)
 
         :param self: instancia de la clase MainApp
         :type self: titi_app.MainApp
@@ -465,7 +470,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
             row = float(self.imagesMenu.lineEdit.text())
             col = float(self.imagesMenu.lineEdit_2.text())
             ## Only to be logged
-            lat,lon = module.getLatLon(row,col,self.lat0, self.lon0, self.dlat, self.dlon)
+            lat, lon = module.getLatLon(row,col,self.lat0, self.lon0, self.dlat, self.dlon)
         ## Format the info to be logged
         sms = "\n+ Extract operation \n"
         sms += "     Lat = " + str(lat) + "\n"
@@ -478,7 +483,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
             self.ventana.textEdit.append("\n Error: Row or column out of bouds")
         else:
             self.imagesMenu.lineEdit_3.setText(str(self.data[row][col]))
-            self.ventana.textEdit.append("     Extracted value = "+str(self.data[row][col]))
+            self.ventana.textEdit.append("     Extracted value = " + str(self.data[row][col]))
 
     ###------------------------Fin Images Menu---------------------------------
     ###------------------------------------------------------------------------
@@ -509,7 +514,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
     ###------------------------Funciones generales-----------------------------
 
     def removeButtons(self):
-        """ Función que elimina los widgets agregados dinamicamente (menú orbitas o imágenes)
+        """ Elimina widgets agregados dinamicamente (menú orbitas o imágenes)
 
         :param self: instancia de la clase MainApp
         :type self: titi_app.MainApp
@@ -523,7 +528,7 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
                 self.ventana.verticalLayout_2.itemAt(cnt).widget().close()
 
     def mouse_move(self, event):
-        """ Función que captura la posición del mouse sobre la imagen (menú imágenes)
+        """ Captura posición del mouse sobre imagen (menú imágenes)
 
         :param self: instancia de la clase MainApp
         :type self: titi_app.MainApp
@@ -547,12 +552,12 @@ class MainApp(QtGui.QMainWindow, mainMenu.Ui_MainWindow, orbitsMenu.Ui_orbitsMen
                 ## Load small zoom
                 self.figure2.clear()
                 self.ax2 = self.figure2.add_subplot(111)
-                image2 = self.ax2.imshow(self.data[y-8:y+8,x-8:x+8], cmap=colorValue)
+                image2 = self.ax2.imshow(self.data[y-8:y+8,x-8:x+8], cmap = colorValue)
                 self.canvas2.draw()
             # statusBar
-            col,row = int(x), int(y)
-            lat,lon = module.getLatLon(row,col,self.lat0, self.lon0, self.dlat, self.dlon)
-            sms = "Row,Col = ["+str(row) + "," + str(col) + "]     |     Lat,Lon =  [" + str(lat) + "," + str(lon) + "]"
+            col, row = int(x), int(y)
+            lat, lon = module.getLatLon(row,col, self.lat0, self.lon0, self.dlat, self.dlon)
+            sms = "Row,Col = [" + str(row) + "," + str(col) + "]     |     Lat,Lon =  [" + str(lat) + "," + str(lon) + "]"
             sms += "    |    Value = " + str(self.data[row,col])
             self.statusBar().showMessage(sms)
 

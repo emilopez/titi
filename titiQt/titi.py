@@ -15,7 +15,9 @@ __date__ = "2014-09-10"
 import sys
 import titi_app
 
+
 def main():
+
     app = titi_app.QtGui.QApplication(sys.argv)
     ventana = titi_app.MainApp()
     width = 973
@@ -24,6 +26,6 @@ def main():
     ventana.show()
     sys.exit(app.exec_())
 
-if __name__== '__main__':
+if __name__ == '__main__':
     main()
 
