@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'mainMenu.ui'
 #
-# Created: Wed Oct 15 19:04:19 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created: Fri Jul 31 15:19:25 2015
+#      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 759, 82))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 757, 80))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.textEdit = QtGui.QTextEdit(self.scrollAreaWidgetContents)
         self.textEdit.setGeometry(QtCore.QRect(0, 0, 761, 84))
@@ -99,14 +99,10 @@ class Ui_MainWindow(object):
         self.comboBox.addItem(_fromUtf8(""))
         self.comboBox.addItem(_fromUtf8(""))
         self.comboBox.addItem(_fromUtf8(""))
-        self.comboBox.addItem(_fromUtf8(""))
-        self.comboBox.addItem(_fromUtf8(""))
-        self.comboBox.addItem(_fromUtf8(""))
-        self.comboBox.addItem(_fromUtf8(""))
         self.verticalLayout_5.addWidget(self.comboBox)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 973, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 973, 19))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName(_fromUtf8("menu_File"))
@@ -136,14 +132,10 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "Titi", None))
-        self.label.setText(_translate("MainWindow", "Image\'s origin", None))
+        self.label.setText(_translate("MainWindow", "Data File", None))
         self.comboBox.setItemText(0, _translate("MainWindow", "None", None))
-        self.comboBox.setItemText(1, _translate("MainWindow", "AsterGDEMv2", None))
-        self.comboBox.setItemText(2, _translate("MainWindow", "EOS (MODIS)", None))
-        self.comboBox.setItemText(3, _translate("MainWindow", "INTA", None))
-        self.comboBox.setItemText(4, _translate("MainWindow", "SAC-D/Aquarius", None))
-        self.comboBox.setItemText(5, _translate("MainWindow", "NOAA", None))
-        self.comboBox.setItemText(6, _translate("MainWindow", "LANDSAT (tif)", None))
+        self.comboBox.setItemText(1, _translate("MainWindow", "GeoTiff (dem/bil/tif/img)", None))
+        self.comboBox.setItemText(2, _translate("MainWindow", "SAC-D/Aquarius", None))
         self.menu_File.setTitle(_translate("MainWindow", "&File", None))
         self.menu_Help.setTitle(_translate("MainWindow", "&Help", None))
         self.menuView.setTitle(_translate("MainWindow", "View", None))
